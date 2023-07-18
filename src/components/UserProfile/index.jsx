@@ -1,5 +1,6 @@
 import React from 'react'
 import styles from './UserProfile.module.css'
+import { useSelector } from 'react-redux'
 
 const Account = ({ account }) => (
   <section className={styles.account}>
@@ -14,7 +15,11 @@ const Account = ({ account }) => (
   </section>
 )
 
-const UserProfile = ({ userName }) => {
+const UserProfile = () => {
+  const { firstName, lastName } = useSelector((state) => state.user.user)
+  const userName =
+    firstName && lastName ? `${firstName} ${lastName}` : 'Loading...'
+
   const mockData = [
     {
       title: 'Argent Bank Checking (x8349)',

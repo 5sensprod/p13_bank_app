@@ -1,14 +1,19 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
+import { Provider } from 'react-redux' // import Provider
+import store from './store' // import your store
 import './index.css'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
-// import '@fortawesome/fontawesome-free/css/all.css'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      {' '}
+      {/* use Provider to wrap App */}
+      <App />
+    </Provider>
   </React.StrictMode>,
 )
 
