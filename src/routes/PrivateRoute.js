@@ -6,7 +6,7 @@ const PrivateRoute = ({ children }) => {
   const { isLoggedIn } = useSelector((state) => state.user)
 
   if (!isLoggedIn) {
-    return <Navigate to="/sign-in" />
+    return <Navigate to="/" />
   }
 
   return children

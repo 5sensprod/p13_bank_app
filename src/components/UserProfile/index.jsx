@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styles from './UserProfile.module.css'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { updateUserProfile } from '../../actions/userActions'
 
 const Account = ({ account }) => (
   <section className={styles.account}>
@@ -16,7 +17,31 @@ const Account = ({ account }) => (
 )
 
 const UserProfile = () => {
+  const dispatch = useDispatch()
   const { firstName, lastName } = useSelector((state) => state.user.user)
+  const [editMode, setEditMode] = useState(false)
+  const [newFirstName, setNewFirstName] = useState(firstName)
+  const [newLastName, setNewLastName] = useState(lastName)
+
+  const handleEdit = () => {
+    setEditMode(true)
+  }
+
+  const handleSave = () => {
+    dispatch(
+      updateUserProfile({ firstName: newFirstName, lastName: newLastName }),
+    )
+    setEditMode(false)
+  }
+
+  const handleFirstNameChange = (e) => {
+    setNewFirstName(e.target.value)
+  }
+
+  const handleLastNameChange = (e) => {
+    setNewLastName(e.target.value)
+  }
+
   const userName =
     firstName && lastName ? `${firstName} ${lastName}` : 'Loading...'
 
@@ -44,9 +69,32 @@ const UserProfile = () => {
         <h1>
           Welcome back
           <br />
-          {userName}!
+          {editMode ? (
+            <>
+              <input
+                type="text"
+                value={newFirstName}
+                onChange={handleFirstNameChange}
+              />
+              <input
+                type="text"
+                value={newLastName}
+                onChange={handleLastNameChange}
+              />
+            </>
+          ) : (
+            <>{userName}!</>
+          )}
         </h1>
-        <button className={styles.editButton}>Edit Name</button>
+        {editMode ? (
+          <button className={styles.editButton} onClick={handleSave}>
+            Save Name
+          </button>
+        ) : (
+          <button className={styles.editButton} onClick={handleEdit}>
+            Edit Name
+          </button>
+        )}
       </div>
       <h2 className={styles.srOnly}>Accounts</h2>
       {mockData.map((account, index) => (

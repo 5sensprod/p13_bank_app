@@ -1,6 +1,8 @@
 const initialState = {
   isLoggedIn: false,
   user: null,
+  loading: false,
+  error: null,
 }
 
 const userReducer = (state = initialState, action) => {
@@ -25,6 +27,28 @@ const userReducer = (state = initialState, action) => {
           ...action.payload,
         },
       }
+    case 'UPDATE_USER_PROFILE_REQUEST':
+      return {
+        ...state,
+        loading: true,
+      }
+    case 'UPDATE_USER_PROFILE_SUCCESS':
+      return {
+        ...state,
+        loading: false,
+        user: {
+          ...state.user,
+          ...action.payload,
+        },
+      }
+    case 'UPDATE_USER_PROFILE_FAILURE':
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      }
+    case 'user/signOut':
+      return { ...initialState }
     default:
       return state
   }

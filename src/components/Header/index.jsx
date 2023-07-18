@@ -1,14 +1,20 @@
 // src/components/Header/index.js
 
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { signOut } from '../../actions/userActions'
 import styles from './Header.module.css'
 import logo from '../../assets/argentBankLogo.png'
 
 const Header = () => {
-  const { isLoggedIn, user } = useSelector((state) => state.user) // Accédez à l'état de connexion et à l'utilisateur
-  // console.log('Header state:', { isLoggedIn, user })
+  const dispatch = useDispatch()
+  const { isLoggedIn, user } = useSelector((state) => state.user)
+
+  const handleSignOut = (event) => {
+    event.preventDefault()
+    dispatch(signOut())
+  }
   return (
     <nav className={styles.mainNav}>
       <Link className={styles.mainNavLogo} to="/">
@@ -32,7 +38,7 @@ const Header = () => {
               <i className="fa fa-user-circle"></i>
               {user?.firstName} {/* Affichez le prénom de l'utilisateur ici */}
             </Link>
-            <Link className={styles.mainNavItem} to="/sign-out">
+            <Link className={styles.mainNavItem} to="/" onClick={handleSignOut}>
               <i className="fa fa-sign-out"></i>
               Sign Out
             </Link>
