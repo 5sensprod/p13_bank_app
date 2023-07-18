@@ -34,6 +34,12 @@ const UserProfile = () => {
     setEditMode(false)
   }
 
+  const handleCancel = () => {
+    setNewFirstName(firstName)
+    setNewLastName(lastName)
+    setEditMode(false)
+  }
+
   const handleFirstNameChange = (e) => {
     setNewFirstName(e.target.value)
   }
@@ -87,9 +93,14 @@ const UserProfile = () => {
           )}
         </h1>
         {editMode ? (
-          <button className={styles.editButton} onClick={handleSave}>
-            Save Name
-          </button>
+          <>
+            <button className={styles.editButton} onClick={handleSave}>
+              Save
+            </button>
+            <button className={styles.editButton} onClick={handleCancel}>
+              Cancel
+            </button>
+          </>
         ) : (
           <button className={styles.editButton} onClick={handleEdit}>
             Edit Name
