@@ -23,11 +23,10 @@ const Login = () => {
       if (response.ok) {
         const data = await response.json()
         localStorage.setItem('token', data.body.token) // Stocke le token dans localStorage
-        // console.log('Login response:', data)
+
         dispatch(loginSuccess(data.body)) // Envoye l'objet user au reducer
 
         // Après la connexion réussie, appeler l'API de profil
-        // console.log('Bearer ' + data.body.token)
         const profileResponse = await fetch(
           'http://localhost:3001/api/v1/user/profile',
           {
@@ -36,16 +35,12 @@ const Login = () => {
               'Content-Type': 'application/json',
               Authorization: `Bearer ${data.body.token}`,
             },
-            // body: JSON.stringify({
-            //   /* You may need to send some data here, depending on the API */
-            // }),
           },
         )
 
         if (profileResponse.ok) {
           const profileData = await profileResponse.json()
           dispatch(setUserProfile(profileData.body)) // Envoyez les données du profil à Redux
-          // console.log('Profile response:', profileData)
           navigate('/user')
         } else {
           throw new Error(
