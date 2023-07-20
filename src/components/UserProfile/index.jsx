@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react'
-import { fetchTransactions } from '../../api/transactionApi'
+import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import AccountSection from './AccountSection'
 import { updateUserProfile } from '../../actions/userActions'
 import styles from './UserProfile.module.css'
 import NameEditor from './NameEditor'
+import useTransactions from '../../hooks/useTransactions'
 
 const UserProfile = () => {
   const dispatch = useDispatch()
@@ -12,7 +12,6 @@ const UserProfile = () => {
   const [editMode, setEditMode] = useState(false)
   const [newFirstName, setNewFirstName] = useState(firstName)
   const [newLastName, setNewLastName] = useState(lastName)
-  const [transactions, setTransactions] = useState([])
 
   const handleEdit = () => {
     setEditMode(true)
@@ -32,18 +31,15 @@ const UserProfile = () => {
   const userName =
     firstName && lastName ? `${firstName} ${lastName}` : 'Loading...'
 
-  useEffect(() => {
-    const loadTransactions = async () => {
-      try {
-        const data = await fetchTransactions()
-        setTransactions(data)
-      } catch (error) {
-        console.error(error)
-      }
-    }
+  const { transactions, loading, error } = useTransactions()
 
-    loadTransactions()
-  }, [])
+  if (loading) {
+    return <div>Loading...</div>
+  }
+
+  if (error) {
+    return <div>Error loading transactions.</div>
+  }
 
   return (
     <>
@@ -51,21 +47,19 @@ const UserProfile = () => {
         <h1>
           Welcome back
           <br />
-          {editMode ? (
-            <NameEditor
-              initialFirstName={newFirstName}
-              initialLastName={newLastName}
-              onSave={handleSave}
-              onCancel={handleCancel}
-            />
-          ) : (
-            <>{userName}!</>
-          )}
+          {userName}!
         </h1>
         {editMode ? (
-          <button onClick={handleCancel}>Cancel</button>
+          <NameEditor
+            initialFirstName={newFirstName}
+            initialLastName={newLastName}
+            onSave={handleSave}
+            onCancel={handleCancel}
+          />
         ) : (
-          <button onClick={handleEdit}>Edit Name</button>
+          <button className={styles.editButton} onClick={handleEdit}>
+            Edit Name
+          </button>
         )}
       </div>
       <AccountSection accounts={transactions} />

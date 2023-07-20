@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import styles from './UserProfile.module.css'
 
 const NameEditor = ({
   initialFirstName,
@@ -27,10 +28,18 @@ const NameEditor = ({
 
   return (
     <>
-      <input type="text" value={firstName} onChange={handleFirstNameChange} />
-      <input type="text" value={lastName} onChange={handleLastNameChange} />
-      <button onClick={handleSaveClick}>Save</button>
-      <button onClick={handleCancelClick}>Cancel</button>
+      <div>
+        <input type="text" value={firstName} onChange={handleFirstNameChange} />
+        <input type="text" value={lastName} onChange={handleLastNameChange} />
+      </div>
+      <div>
+        <button className={styles.editButton} onClick={handleSaveClick}>
+          Save
+        </button>
+        <button className={styles.editButton} onClick={handleCancelClick}>
+          Cancel
+        </button>
+      </div>
     </>
   )
 }
