@@ -18,6 +18,11 @@ const UserProfile = () => {
   const [newLastName, setNewLastName] = useState(user.lastName)
 
   useEffect(() => {
+    setNewFirstName(user.firstName)
+    setNewLastName(user.lastName)
+  }, [user.firstName, user.lastName])
+
+  useEffect(() => {
     // Action pour obtenir le profil de l'utilisateur dès que le composant est monté.
     dispatch(fetchUserProfile())
   }, [dispatch])
