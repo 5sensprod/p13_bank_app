@@ -33,10 +33,10 @@ const NameEditor = ({
         <input type="text" value={lastName} onChange={handleLastNameChange} />
       </div>
       <div>
-        <button className={styles.editButton} onClick={handleSaveClick}>
+        <button className={styles.editSaveButton} onClick={handleSaveClick}>
           Save
         </button>
-        <button className={styles.editButton} onClick={handleCancelClick}>
+        <button className={styles.editCancelButton} onClick={handleCancelClick}>
           Cancel
         </button>
       </div>

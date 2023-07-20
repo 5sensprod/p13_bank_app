@@ -45,7 +45,7 @@
     flex: 1;
 }
 
-.editButton {
+.editButton, .editSaveButton, .editCancelButton  {
     border-color: #00bc77;
     background-color: #00bc77;
     color: #fff;
@@ -63,6 +63,16 @@
     border-color: #00bc77;
     background-color: #00bc77;
     color: #fff;
+}
+
+.editButton {
+    /* width: 70px;
+    margin-top: 25px; */
+}
+
+.editSaveButton, .editCancelButton {
+    width: 70px;
+    margin-top: 25px;
 }
 
 @media (min-width: 720px) {
