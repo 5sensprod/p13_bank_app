@@ -1,0 +1,25 @@
+.transactionTable {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .transactionRow {
+    cursor: pointer;
+  }
+  
+  .transactionDetails {
+    margin: 10px;
+    padding: 10px;
+    background-color: #f5f5f5;
+    text-align: left;
+
+  }
+  .editField {
+    display: flex;
+    align-items: center;
+  }
+  
+  .editField i {
+    margin-left: 10px;
+    cursor: pointer;
+  }
