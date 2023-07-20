@@ -5,6 +5,7 @@ import Login from '../pages/Login'
 import User from '../pages/User'
 import NotFound from '../pages/NotFound'
 import PrivateRoute from './PrivateRoute'
+import Transactions from '../pages/Transactions'
 
 const AppRouter = () => {
   return (
@@ -16,6 +17,14 @@ const AppRouter = () => {
         element={
           <PrivateRoute>
             <User />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/transactions"
+        element={
+          <PrivateRoute>
+            <Transactions />
           </PrivateRoute>
         }
       />
