@@ -7,19 +7,23 @@ export const logout = () => ({
   type: 'LOGOUT',
 })
 
-export const fetchUserProfile = () => async (dispatch) => {
-  // console.log('fetchUserProfile action triggered')
+export const fetchUserProfile = () => async (dispatch, getState) => {
   try {
+    const { email, password } = getState().user // Récupère l'email et le mot de passe depuis le state Redux
     const token = localStorage.getItem('token')
+
     const response = await fetch('http://localhost:3001/api/v1/user/profile', {
+      method: 'POST',
       headers: {
+        'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
       },
+      body: JSON.stringify({ email, password }),
     })
 
     if (response.ok) {
       const data = await response.json()
-      dispatch(setUserProfile(data.body)) // Dispatch les données du profil de l'utilisateur au reducer
+      dispatch(setUserProfile(data.body))
     } else {
       throw new Error('Erreur de connexion : ' + response.status)
     }
@@ -87,3 +91,7 @@ export const updateUserProfile = ({ firstName, lastName }) => {
     }
   }
 }
+export const storeUserCredentials = (email, password) => ({
+  type: 'STORE_USER_CREDENTIALS',
+  payload: { email, password },
+})

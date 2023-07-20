@@ -1,17 +1,35 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import AccountSection from './AccountSection'
-import { updateUserProfile } from '../../actions/userActions'
+import { updateUserProfile, fetchUserProfile } from '../../actions/userActions'
 import styles from './UserProfile.module.css'
 import NameEditor from './NameEditor'
-import useTransactions from '../../hooks/useTransactions'
+import { fetchUserAccounts } from '../../actions/accountActions'
 
 const UserProfile = () => {
   const dispatch = useDispatch()
-  const { firstName, lastName } = useSelector((state) => state.user.user)
+  const user = useSelector((state) => state.user.user)
+  const accounts = useSelector((state) => state.accounts.accounts)
+  const loadingAccounts = useSelector((state) => state.accounts.loading)
+  const errorAccounts = useSelector((state) => state.accounts.error)
+
   const [editMode, setEditMode] = useState(false)
-  const [newFirstName, setNewFirstName] = useState(firstName)
-  const [newLastName, setNewLastName] = useState(lastName)
+  const [newFirstName, setNewFirstName] = useState(user.firstName)
+  const [newLastName, setNewLastName] = useState(user.lastName)
+
+  useEffect(() => {
+    // Action pour obtenir le profil de l'utilisateur dès que le composant est monté.
+    dispatch(fetchUserProfile())
+  }, [dispatch])
+
+  const userId = user && user.id // Extraction de l'expression complexe en une variable séparée
+
+  useEffect(() => {
+    // Ensuite, avec l'ID de l'utilisateur, obtention de ses comptes
+    if (userId) {
+      dispatch(fetchUserAccounts(userId))
+    }
+  }, [dispatch, userId]) // Nous nous assurons de ne dépendre que de user.id, pas de l'objet user entier.
 
   const handleEdit = () => {
     setEditMode(true)
@@ -23,22 +41,22 @@ const UserProfile = () => {
   }
 
   const handleCancel = () => {
-    setNewFirstName(firstName)
-    setNewLastName(lastName)
+    setNewFirstName(user.firstName)
+    setNewLastName(user.lastName)
     setEditMode(false)
   }
 
   const userName =
-    firstName && lastName ? `${firstName} ${lastName}` : 'Loading...'
+    user.firstName && user.lastName
+      ? `${user.firstName} ${user.lastName}`
+      : 'Loading...'
 
-  const { transactions, loading, error } = useTransactions()
-
-  if (loading) {
-    return <div>Loading...</div>
+  if (loadingAccounts) {
+    return <div>Loading accounts...</div>
   }
 
-  if (error) {
-    return <div>Error loading transactions.</div>
+  if (errorAccounts) {
+    return <div>Error loading accounts: {errorAccounts.message}</div>
   }
 
   return (
@@ -62,7 +80,7 @@ const UserProfile = () => {
           </button>
         )}
       </div>
-      <AccountSection accounts={transactions} />
+      <AccountSection accounts={accounts} />
     </>
   )
 }

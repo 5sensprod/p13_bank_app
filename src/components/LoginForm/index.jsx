@@ -1,6 +1,10 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { loginSuccess, setUserProfile } from '../../actions/userActions'
+import {
+  loginSuccess,
+  setUserProfile,
+  storeUserCredentials,
+} from '../../actions/userActions'
 import { useNavigate } from 'react-router-dom'
 import LoginForm from './LoginForm'
 import styles from './Login.module.css'
@@ -15,10 +19,11 @@ const Login = () => {
     try {
       const userData = await authenticateUser(username, password)
 
+      // Stocke les informations d'identification
+      dispatch(storeUserCredentials(username, password))
       dispatch(loginSuccess(userData))
 
       const userProfile = await fetchUserProfile(userData.token)
-
       dispatch(setUserProfile(userProfile))
 
       navigate('/user')
