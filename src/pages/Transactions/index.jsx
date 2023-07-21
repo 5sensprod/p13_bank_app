@@ -15,7 +15,7 @@ const Transactions = () => {
 
   return (
     <main className={`${styles.main} ${styles.bgDark}`}>
-      <h2>Liste des transactions</h2>
+      <h2 className={styles.srOnly}>Liste des transactions</h2>
 
       {account && <AccountDetails account={account} />}
 

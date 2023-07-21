@@ -1,6 +1,21 @@
-.userProfileContainer, .header {
+.userProfileContainer,
+.header {
     color: #fff;
     margin-bottom: 2rem;
+}
+
+.accountDetail {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 3px solid #9eadba;
+    background-color: #fff;
+    width: 100%;
+    margin: 0 auto 2rem;
+    flex-direction: column;
+    padding: 1.5rem;
+    box-sizing: border-box;
+    text-align:  center;
 }
 
 .account {
@@ -23,7 +38,8 @@
     font-weight: bold;
 }
 
-.accountAmountDescription, .accountTitle {
+.accountAmountDescription,
+.accountTitle {
     margin: 0;
 }
 
@@ -38,18 +54,23 @@
     flex: 1;
 }
 
-.editButton, .editSaveButton, .editCancelButton, .transactionButton {
+.editButton,
+.editSaveButton,
+.editCancelButton,
+.transactionButton {
     border-color: #00bc77;
     background-color: #00bc77;
     color: #fff;
     font-weight: bold;
 }
 
-.editButton, .transactionButton {
+.editButton,
+.transactionButton {
     padding: 10px;
 }
 
-.editSaveButton, .editCancelButton {
+.editSaveButton,
+.editCancelButton {
     width: 70px;
     margin-top: 25px;
 }

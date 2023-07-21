@@ -11,7 +11,7 @@ const AccountDetails = ({ account }) => {
   }
 
   return (
-    <section className={styles.account}>
+    <section className={styles.accountDetail}>
       <div className={styles.accountContentWrapper}>
         <h3 className={styles.accountTitle}>{account.title}</h3>
         <p className={styles.accountAmount}>

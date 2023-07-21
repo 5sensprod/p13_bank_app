@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import { formatDate, currencyFormatter } from '../../utils/formats'
 import {
   fetchTransactionsFromAPI,
   updateTransaction,
@@ -49,11 +50,11 @@ const TransactionList = ({ accountId }) => {
   if (error) return <p>{error.message}</p>
 
   return (
-    <main>
-      <h2>Transactions for account {accountId}</h2>
+    <section>
+      {/* <h2>Transactions for account {accountId}</h2> */}
       <table className={style.transactionTable}>
         <thead>
-          <tr>
+          <tr className={style.header}>
             <th>Date</th>
             <th>Description</th>
             <th>Amount</th>
@@ -73,15 +74,23 @@ const TransactionList = ({ accountId }) => {
                   )
                 }
               >
-                <td>{new Date(transaction.date).toLocaleDateString()}</td>
+                <td>
+                  {expandedTransaction === transaction._id ? (
+                    <i className="fa fa-chevron-up"></i>
+                  ) : (
+                    <i className="fa fa-chevron-down"></i>
+                  )}
+                  {' ' + formatDate(transaction.date)}
+                </td>
                 <td>{transaction.description}</td>
-                <td>{transaction.amount}</td>
-                <td>{transaction.balance}</td>
+                <td>{currencyFormatter(transaction.amount)}</td>
+                <td>{currencyFormatter(transaction.balance)}</td>
               </tr>
               {expandedTransaction === transaction._id && (
                 <tr>
                   <td colSpan="4">
                     <div className={style.transactionDetails}>
+                      <p>Transaction Type: {transaction.transactionType}</p>
                       {isEditing !== 'category' ? (
                         <p
                           onClick={() => {
@@ -117,7 +126,6 @@ const TransactionList = ({ accountId }) => {
                           ></i>
                         </div>
                       )}
-
                       {isEditing !== 'notes' ? (
                         <p
                           onClick={() => {
@@ -161,7 +169,7 @@ const TransactionList = ({ accountId }) => {
           ))}
         </tbody>
       </table>
-    </main>
+    </section>
   )
 }
 
