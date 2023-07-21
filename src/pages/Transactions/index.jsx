@@ -1,17 +1,25 @@
 import React from 'react'
 import styles from './Transactions.module.css'
 import { useLocation } from 'react-router-dom'
-import TransactionList from '../../components/TransactionList' // N'oubliez pas d'importer TransactionList si ce n'est pas déjà fait
+import TransactionList from '../../components/TransactionList'
+import AccountDetails from '../../components/UserProfile/AccountDetails'
+import { useSelector } from 'react-redux'
 
 const Transactions = () => {
   const location = useLocation()
   const accountId = location.state?.accountId
 
+  // Utilise useSelector pour obtenir le compte par son ID
+  const accounts = useSelector((state) => state.accounts.accounts)
+  const account = accounts.find((acc) => acc._id === accountId)
+
   return (
     <main className={`${styles.main} ${styles.bgDark}`}>
       <h2>Liste des transactions</h2>
-      <TransactionList accountId={accountId} />{' '}
-      {/* Passez l'accountId au composant TransactionList */}
+
+      {account && <AccountDetails account={account} />}
+
+      <TransactionList accountId={accountId} />
     </main>
   )
 }

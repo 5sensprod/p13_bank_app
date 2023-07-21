@@ -49,7 +49,7 @@ const TransactionList = ({ accountId }) => {
   if (error) return <p>{error.message}</p>
 
   return (
-    <div>
+    <main>
       <h2>Transactions for account {accountId}</h2>
       <table className={style.transactionTable}>
         <thead>
@@ -161,7 +161,7 @@ const TransactionList = ({ accountId }) => {
           ))}
         </tbody>
       </table>
-    </div>
+    </main>
   )
 }
 
