@@ -11,6 +11,15 @@ import styles from './Login.module.css'
 import { authenticateUser } from '../../api/authAPI'
 import { fetchUserProfile } from '../../api/profileAPI'
 
+/**
+ * A component that provides an interface for user authentication.
+ * It presents a login form, handles the authentication process,
+ * fetches the user profile upon successful authentication, and navigates to the user's profile page.
+ *
+ * @component
+ * @returns {React.ReactNode} The rendered login interface, including the login form.
+ */
+
 const Login = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()

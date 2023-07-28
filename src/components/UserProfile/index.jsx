@@ -6,6 +6,16 @@ import styles from './UserProfile.module.css'
 import NameEditor from './NameEditor'
 import { fetchUserAccounts } from '../../actions/accountActions'
 
+/**
+ * A component that displays the user's profile including their name and associated accounts.
+ * It allows users to edit their first and last name. Also, it handles fetching and displaying
+ * of the user's profile and accounts.
+ *
+ * @component
+ * @returns {React.ReactNode} The rendered user profile page, which may display the user's name,
+ * associated accounts, or error/loading messages.
+ */
+
 const UserProfile = () => {
   const dispatch = useDispatch()
   const user = useSelector((state) => state.user.user)

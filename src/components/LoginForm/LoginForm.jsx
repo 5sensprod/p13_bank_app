@@ -2,6 +2,16 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import styles from './Login.module.css'
 
+/**
+ * A component that provides a login form for users to input their username and password.
+ *
+ * @component
+ * @param {Object} props
+ * @param {function} props.handleLogin - Callback function to handle the login process.
+ * Receives two parameters: the inputted username and password.
+ * @returns {React.ReactNode} The rendered login form.
+ */
+
 const LoginForm = ({ handleLogin }) => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')

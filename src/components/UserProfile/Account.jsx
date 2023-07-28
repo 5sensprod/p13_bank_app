@@ -3,6 +3,20 @@ import PropTypes from 'prop-types'
 import styles from './UserProfile.module.css'
 import { useNavigate } from 'react-router-dom'
 
+/**
+ * A component that renders an individual user account with an option
+ * to view its transactions.
+ *
+ * @component
+ * @param {Object} props
+ * @param {Object} props.account - The account object to be displayed.
+ * @param {string} props.account._id - The unique identifier for the account.
+ * @param {string} props.account.title - The title of the account.
+ * @param {number} props.account.balance - The balance amount of the account.
+ * @param {string} [props.account.description] - An optional description of the account.
+ * @returns {React.ReactNode} The rendered account information with a button to navigate to its transactions.
+ */
+
 const Account = ({ account }) => {
   const navigate = useNavigate()
   const formatCurrency = (amount) => {
