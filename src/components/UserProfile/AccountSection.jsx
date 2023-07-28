@@ -1,4 +1,5 @@
 import styles from './UserProfile.module.css'
+import PropTypes from 'prop-types'
 import Account from './Account'
 
 const AccountSection = ({ accounts }) => {
@@ -10,6 +11,16 @@ const AccountSection = ({ accounts }) => {
       ))}
     </>
   )
+}
+
+AccountSection.propTypes = {
+  accounts: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      balance: PropTypes.number.isRequired,
+      description: PropTypes.string,
+    }),
+  ).isRequired,
 }
 
 export default AccountSection

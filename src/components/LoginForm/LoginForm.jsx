@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import PropTypes from 'prop-types'
 import styles from './Login.module.css'
 
 const LoginForm = ({ handleLogin }) => {
@@ -39,6 +40,10 @@ const LoginForm = ({ handleLogin }) => {
       </button>
     </form>
   )
+}
+
+LoginForm.propTypes = {
+  handleLogin: PropTypes.func.isRequired,
 }
 
 export default LoginForm

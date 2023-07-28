@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import styles from './Feature.module.css'
 
 const Feature = ({ imgSrc, imgAlt, title, description }) => (
@@ -8,5 +9,12 @@ const Feature = ({ imgSrc, imgAlt, title, description }) => (
     <p>{description}</p>
   </div>
 )
+
+Feature.propTypes = {
+  imgSrc: PropTypes.string.isRequired,
+  imgAlt: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+}
 
 export default Feature

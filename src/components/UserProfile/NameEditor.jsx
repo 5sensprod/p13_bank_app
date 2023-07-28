@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import PropTypes from 'prop-types'
 import styles from './UserProfile.module.css'
 
 const NameEditor = ({
@@ -42,6 +43,13 @@ const NameEditor = ({
       </div>
     </>
   )
+}
+
+NameEditor.propTypes = {
+  initialFirstName: PropTypes.string.isRequired,
+  initialLastName: PropTypes.string.isRequired,
+  onSave: PropTypes.func.isRequired,
+  onCancel: PropTypes.func.isRequired,
 }
 
 export default NameEditor

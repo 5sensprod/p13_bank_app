@@ -8,7 +8,7 @@ const Features = () => (
   <section className={styles.features}>
     <h2 className={styles.srOnly}>Features</h2>
     {featuresData.map((feature, index) => (
-      <Feature key={index} {...feature} />
+      <Feature key={feature.id} {...feature} />
     ))}
   </section>
 )

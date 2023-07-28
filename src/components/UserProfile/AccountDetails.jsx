@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import styles from './UserProfile.module.css'
 
 const AccountDetails = ({ account }) => {
@@ -21,6 +22,14 @@ const AccountDetails = ({ account }) => {
       </div>
     </section>
   )
+}
+
+AccountDetails.propTypes = {
+  account: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    balance: PropTypes.number.isRequired,
+    description: PropTypes.string,
+  }).isRequired,
 }
 
 export default AccountDetails

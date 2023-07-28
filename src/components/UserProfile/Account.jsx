@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import styles from './UserProfile.module.css'
 import { useNavigate } from 'react-router-dom'
 
@@ -34,6 +35,15 @@ const Account = ({ account }) => {
       </div>
     </section>
   )
+}
+
+Account.propTypes = {
+  account: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    balance: PropTypes.number.isRequired,
+    description: PropTypes.string,
+  }).isRequired,
 }
 
 export default Account
