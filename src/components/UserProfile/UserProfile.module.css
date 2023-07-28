@@ -98,6 +98,12 @@
     }
 }
 
+@media (max-width: 410px) {
+    .account {
+        margin: 0 auto .9rem;
+    }
+  }
+
 /* Propriétés pour la classe .srOnly (Screen Reader Only) */
 .srOnly {
     border: 0 !important;

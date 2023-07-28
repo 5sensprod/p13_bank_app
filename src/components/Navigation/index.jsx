@@ -18,18 +18,20 @@ const Navigation = () => {
       {!isLoggedIn && (
         <Link className={styles.mainNavItem} to="/sign-in">
           <i className="fa fa-user-circle"></i>
-          Sign In
+          <span className={styles.mainNavItemText}>Sign In</span>
         </Link>
       )}
       {isLoggedIn && (
         <>
           <Link className={styles.mainNavItem} to="/user">
-            <i className="fa fa-user-circle"></i>
+            <span className={styles.mainNavItemIcon}>
+              <i className="fa fa-user-circle"></i>
+            </span>
             {user?.firstName}
           </Link>
           <Link className={styles.mainNavItem} to="/" onClick={handleSignOut}>
             <i className="fa fa-sign-out"></i>
-            Sign Out
+            <span className={styles.mainNavItemText}> Sign Out</span>
           </Link>
         </>
       )}

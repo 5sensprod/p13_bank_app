@@ -3,3 +3,13 @@
     color: #2c3e50;
 }
 
+
+@media (max-width: 415px) {
+    .mainNavItemText {
+      display: none;
+    }
+    .mainNavItemIcon {
+        display: none;
+    }
+    }
+

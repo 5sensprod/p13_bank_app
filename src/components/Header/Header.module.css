@@ -24,3 +24,9 @@
   width: 1px !important;
   white-space: nowrap !important;
 }
+
+@media (max-width: 410px) {
+  .mainNav {
+    padding: 5px 10px;
+  }
+}
