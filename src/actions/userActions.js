@@ -1,3 +1,5 @@
+import { getHeaders } from '../utils/httpUtils.js'
+
 export const loginSuccess = (user) => ({
   type: 'LOGIN_SUCCESS',
   payload: user,
@@ -10,14 +12,10 @@ export const logout = () => ({
 export const fetchUserProfile = () => async (dispatch, getState) => {
   try {
     const { email, password } = getState().user // Récupère l'email et le mot de passe depuis le state Redux
-    const token = localStorage.getItem('token')
 
     const response = await fetch('http://localhost:3001/api/v1/user/profile', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
-      },
+      headers: getHeaders(),
       body: JSON.stringify({ email, password }),
     })
 
@@ -66,15 +64,11 @@ export const updateUserProfile = ({ firstName, lastName }) => {
     dispatch(updateUserProfileRequest())
 
     try {
-      const token = localStorage.getItem('token')
       const response = await fetch(
         'http://localhost:3001/api/v1/user/profile',
         {
           method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`,
-          },
+          headers: getHeaders(),
           body: JSON.stringify({ firstName, lastName }),
         },
       )

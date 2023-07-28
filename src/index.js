@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { Provider } from 'react-redux' // import Provider
-import store from './store' // import your store
+import { Provider } from 'react-redux'
+import store from './store'
 import './index.css'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
@@ -11,7 +11,6 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
       {' '}
-      {/* use Provider to wrap App */}
       <App />
     </Provider>
   </React.StrictMode>,

@@ -1,3 +1,5 @@
+import { getHeaders } from '../utils/httpUtils.js'
+
 export const FETCH_ACCOUNTS_REQUEST = 'FETCH_ACCOUNTS_REQUEST'
 export const FETCH_ACCOUNTS_SUCCESS = 'FETCH_ACCOUNTS_SUCCESS'
 export const FETCH_ACCOUNTS_FAILURE = 'FETCH_ACCOUNTS_FAILURE'
@@ -21,20 +23,15 @@ export const fetchUserAccounts = (userId) => async (dispatch) => {
   dispatch(fetchAccountsRequest())
 
   try {
-    const token = localStorage.getItem('token')
     const response = await fetch(
       `http://localhost:3001/api/v1/user/${userId}/accounts`,
       {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+        headers: getHeaders(),
       },
     )
 
     if (response.ok) {
       const data = await response.json()
-
-      // Utilise data.body pour dispatcher vers le store Redux
       dispatch(fetchAccountsSuccess(data.body))
     } else {
       throw new Error('Erreur de récupération des comptes : ' + response.status)

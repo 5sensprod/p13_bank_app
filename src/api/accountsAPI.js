@@ -1,12 +1,10 @@
+import { getHeaders } from '../utils/httpUtils.js'
+
 const BASE_URL = 'http://localhost:3001/api/v1'
 
 export const fetchUserAccountsFromAPI = async (userId) => {
-  const token = localStorage.getItem('token')
-
   const response = await fetch(`${BASE_URL}/user/${userId}/accounts`, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
+    headers: getHeaders(),
   })
 
   if (response.ok) {

@@ -1,14 +1,12 @@
+import { getHeaders } from '../utils/httpUtils.js'
+
 const BASE_URL = 'http://localhost:3001/api/v1'
 
 export const fetchTransactionsFromAPI = async (accountId) => {
-  const token = localStorage.getItem('token')
-
   const response = await fetch(
     `${BASE_URL}/account/${accountId}/transactions`,
     {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
+      headers: getHeaders(),
     },
   )
 
@@ -22,16 +20,11 @@ export const fetchTransactionsFromAPI = async (accountId) => {
 }
 
 export const updateTransaction = async (accountId, transactionId, updates) => {
-  const token = localStorage.getItem('token')
-
   const response = await fetch(
     `${BASE_URL}/account/${accountId}/transactions/${transactionId}`,
     {
       method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
-      },
+      headers: getHeaders(),
       body: JSON.stringify(updates),
     },
   )
