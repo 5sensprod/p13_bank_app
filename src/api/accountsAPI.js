@@ -11,6 +11,8 @@ export const fetchUserAccountsFromAPI = async (userId) => {
   if (response.ok) {
     return await response.json()
   } else {
-    throw new Error('Erreur de récupération des comptes : ' + response.status)
+    throw new Error(
+      'Erreur de récupération des comptes. Code: ' + response.status,
+    )
   }
 }

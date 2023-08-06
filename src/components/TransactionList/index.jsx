@@ -7,6 +7,8 @@ import {
 } from '../../actions/transactionActions'
 import style from './TransactionList.module.css'
 
+const USE_MOCK_DATA = process.env.REACT_APP_USE_MOCK_DATA === 'true'
+
 const TransactionList = ({ accountId }) => {
   const [isEditing, setIsEditing] = useState(null)
   const [editedValues, setEditedValues] = useState({
@@ -74,7 +76,7 @@ const TransactionList = ({ accountId }) => {
                 <td>{currencyFormatter(transaction.amount)}</td>
                 <td>{currencyFormatter(transaction.balance)}</td>
               </tr>
-              {expandedTransaction === transaction._id && (
+              {!USE_MOCK_DATA && expandedTransaction === transaction._id && (
                 <tr>
                   <td colSpan="4">
                     <div className={style.transactionDetails}>

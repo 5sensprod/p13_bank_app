@@ -3,6 +3,8 @@ import {
   updateTransaction,
 } from '../api/transactionApi'
 
+import { mockedTransactions } from '../data/mockedTransactions'
+
 // Constantes d'Action pour les transactions
 export const FETCH_TRANSACTIONS_REQUEST = 'FETCH_TRANSACTIONS_REQUEST'
 export const FETCH_TRANSACTIONS_SUCCESS = 'FETCH_TRANSACTIONS_SUCCESS'
@@ -27,13 +29,17 @@ export const fetchTransactionsFailure = (error) => ({
 export const fetchTransactions = (accountId) => {
   return (dispatch) => {
     dispatch(fetchTransactionsRequest())
-    fetchTransactionsFromAPI(accountId)
-      .then((data) => {
-        dispatch(fetchTransactionsSuccess(data.body))
-      })
-      .catch((error) => {
-        dispatch(fetchTransactionsFailure(error))
-      })
+    if (USE_MOCK_DATA) {
+      dispatch(fetchTransactionsSuccess(mockedTransactions))
+    } else {
+      fetchTransactionsFromAPI(accountId)
+        .then((data) => {
+          dispatch(fetchTransactionsSuccess(data.body))
+        })
+        .catch((error) => {
+          dispatch(fetchTransactionsFailure(error))
+        })
+    }
   }
 }
 
@@ -58,11 +64,21 @@ export const updateTransactionFailure = (error) => ({
 })
 
 // Actions Asynchrones pour la mise à jour de transactions
+const USE_MOCK_DATA = process.env.REACT_APP_USE_MOCK_DATA === 'true'
+
 export const updateAndRefreshTransaction = (
   accountId,
   transactionId,
   updates,
 ) => {
+  if (USE_MOCK_DATA) {
+    return (dispatch) => {
+      console.warn(
+        'La mise à jour des transactions est désactivée en mode mock.',
+      )
+    }
+  }
+
   return (dispatch) => {
     dispatch(updateTransactionRequest())
     updateTransaction(accountId, transactionId, updates)
