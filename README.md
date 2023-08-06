@@ -60,24 +60,19 @@ mongo --version
 
 Vous avez le choix entre deux backends : le backend principal **(Project-10-Bank-API)** et un backend optionnel **(p13_bank_app_backend)**. Suivez les étapes en fonction de votre choix.
 
-**Backend Principal - Project-10-Bank-API**
+**Backend - Project-10-Bank-API**
 
 - Le backend principal est fourni avec l'exercice.
 - Pour l'utiliser, assurez-vous que la variable d'environnement `REACT_APP_USE_MOCK_DATA` est définie à `true` dans le fichier `.env` de ce projet frontend.
 
-- Vous pouvez accéder au dépôt du backend principal en visitant le lien suivant :
+- Vous pouvez accéder au dépôt du backend en visitant le lien suivant :
   [Project-10-Bank-API](https://github.com/OpenClassrooms-Student-Center/Project-10-Bank-API)
 
 #### Backend Optionnel - p13_bank_app_backend
 
-- Si vous souhaitez une expérience enrichie avec des données réelles des comptes et des transactions, optez pour ce backend.
+- Si vous souhaitez une expérience enrichie avec des données réelles des comptes et des transactions, optez pour ce backend :
+  **[p13_bank_app_backend]**(https://github.com/5sensprod/p13_bank_app_backend)
 - Pour l'utiliser, assurez-vous que la variable d'environnement `REACT_APP_USE_MOCK_DATA` est définie à `false` dans le fichier `.env` de ce projet frontend.
-
-- Clonez le backend optionnel :
-
-  ```bash
-  git clone https://github.com/5sensprod/p13_bank_app_backend
-  ```
 
 ## 🚀 Lancement de l'application frontend
 
