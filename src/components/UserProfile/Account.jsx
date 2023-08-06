@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styles from './UserProfile.module.css'
 import { useNavigate } from 'react-router-dom'
+import { currencyFormatter } from '../../utils/formats.js'
 
 /**
  * A component that renders an individual user account with an option
@@ -19,13 +20,6 @@ import { useNavigate } from 'react-router-dom'
 
 const Account = ({ account }) => {
   const navigate = useNavigate()
-  const formatCurrency = (amount) => {
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
-      minimumFractionDigits: 2,
-    }).format(amount)
-  }
   const handleViewTransactions = () => {
     navigate(`/transactions`, { state: { accountId: account._id } })
   }
@@ -35,7 +29,7 @@ const Account = ({ account }) => {
       <div className={styles.accountContentWrapper}>
         <h3 className={styles.accountTitle}>{account.title}</h3>
         <p className={styles.accountAmount}>
-          {formatCurrency(account.balance)}
+          {currencyFormatter(account.balance)}
         </p>
         <p className={styles.accountAmountDescription}>{account.description}</p>
       </div>

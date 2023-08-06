@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styles from './UserProfile.module.css'
+import { currencyFormatter } from '../../utils/formats.js'
 
 /**
  * A component that renders detailed information about a user's account.
@@ -15,20 +16,12 @@ import styles from './UserProfile.module.css'
  */
 
 const AccountDetails = ({ account }) => {
-  const formatCurrency = (amount) => {
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
-      minimumFractionDigits: 2,
-    }).format(amount)
-  }
-
   return (
     <section className={styles.accountDetail}>
       <div className={styles.accountContentWrapper}>
         <h3 className={styles.accountTitle}>{account.title}</h3>
         <p className={styles.accountAmount}>
-          {formatCurrency(account.balance)}
+          {currencyFormatter(account.balance)}
         </p>
         <p className={styles.accountAmountDescription}>{account.description}</p>
       </div>
