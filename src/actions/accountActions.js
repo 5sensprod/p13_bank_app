@@ -1,10 +1,11 @@
 import { fetchUserAccountsFromAPI } from '../api/accountsAPI.js'
 
+// Constantes d'Action pour les comptes
 export const FETCH_ACCOUNTS_REQUEST = 'FETCH_ACCOUNTS_REQUEST'
 export const FETCH_ACCOUNTS_SUCCESS = 'FETCH_ACCOUNTS_SUCCESS'
 export const FETCH_ACCOUNTS_FAILURE = 'FETCH_ACCOUNTS_FAILURE'
 
-// Action creators
+// Créateurs d'Actions pour les comptes
 export const fetchAccountsRequest = () => ({
   type: FETCH_ACCOUNTS_REQUEST,
 })
@@ -19,6 +20,7 @@ export const fetchAccountsFailure = (error) => ({
   payload: error,
 })
 
+// Actions Asynchrones pour les comptes
 export const fetchUserAccounts = (userId) => async (dispatch) => {
   dispatch(fetchAccountsRequest())
 
