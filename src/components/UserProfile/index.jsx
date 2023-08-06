@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import AccountSection from './AccountSection'
-import { updateUserProfile, fetchUserProfile } from '../../actions/userActions'
-import styles from './UserProfile.module.css'
 import NameEditor from './NameEditor'
+import { updateUserProfile, fetchUserProfile } from '../../actions/userActions'
 import { fetchUserAccounts } from '../../actions/accountActions'
+import styles from './UserProfile.module.css'
 
 /**
  * A component that displays the user's profile including their name and associated accounts.

@@ -1,4 +1,4 @@
-import { getHeaders } from '../utils/httpUtils.js'
+import { fetchUserAccountsFromAPI } from '../api/accountsAPI.js'
 
 export const FETCH_ACCOUNTS_REQUEST = 'FETCH_ACCOUNTS_REQUEST'
 export const FETCH_ACCOUNTS_SUCCESS = 'FETCH_ACCOUNTS_SUCCESS'
@@ -23,19 +23,8 @@ export const fetchUserAccounts = (userId) => async (dispatch) => {
   dispatch(fetchAccountsRequest())
 
   try {
-    const response = await fetch(
-      `http://localhost:3001/api/v1/user/${userId}/accounts`,
-      {
-        headers: getHeaders(),
-      },
-    )
-
-    if (response.ok) {
-      const data = await response.json()
-      dispatch(fetchAccountsSuccess(data.body))
-    } else {
-      throw new Error('Erreur de récupération des comptes : ' + response.status)
-    }
+    const data = await fetchUserAccountsFromAPI(userId)
+    dispatch(fetchAccountsSuccess(data.body))
   } catch (error) {
     console.error(error)
     dispatch(fetchAccountsFailure(error))

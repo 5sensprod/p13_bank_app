@@ -1,4 +1,9 @@
-import { getHeaders } from '../utils/httpUtils.js'
+import {
+  fetchUserProfileFromAPI,
+  updateUserProfileInAPI,
+} from '../api/userAPI.js'
+
+import { authenticateUser } from '../api/authAPI'
 
 export const loginSuccess = (user) => ({
   type: 'LOGIN_SUCCESS',
@@ -9,25 +14,36 @@ export const logout = () => ({
   type: 'LOGOUT',
 })
 
+export const authenticateAndFetchProfile =
+  (username, password) => async (dispatch) => {
+    try {
+      const userData = await authenticateUser(username, password)
+      dispatch(storeUserCredentials(username, password))
+      dispatch(loginSuccess(userData))
+
+      const userProfile = await fetchUserProfileFromAPI()
+      dispatch(setUserProfile(userProfile))
+
+      return true // Succès
+    } catch (error) {
+      console.error(
+        "Erreur lors de l'authentification ou de la récupération du profil:",
+        error,
+      )
+      // Ici, vous pouvez également dispatcher des actions d'échec si nécessaire.
+      return false // Échec
+    }
+  }
+
 export const fetchUserProfile = () => async (dispatch, getState) => {
   try {
-    const { email, password } = getState().user // Récupère l'email et le mot de passe depuis le state Redux
-
-    const response = await fetch('http://localhost:3001/api/v1/user/profile', {
-      method: 'POST',
-      headers: getHeaders(),
-      body: JSON.stringify({ email, password }),
-    })
-
-    if (response.ok) {
-      const data = await response.json()
-      dispatch(setUserProfile(data.body))
-    } else {
-      throw new Error('Erreur de connexion : ' + response.status)
-    }
+    const { email, password } = getState().user
+    const data = await fetchUserProfileFromAPI(email, password)
+    dispatch(setUserProfile(data.body))
   } catch (error) {
     console.error(error)
   }
+  return Promise.resolve()
 }
 
 export const setUserProfile = (user) => ({
@@ -59,32 +75,19 @@ export const updateUserProfileFailure = (error) => ({
   payload: error,
 })
 
-export const updateUserProfile = ({ firstName, lastName }) => {
-  return async (dispatch) => {
+export const updateUserProfile =
+  ({ firstName, lastName }) =>
+  async (dispatch) => {
     dispatch(updateUserProfileRequest())
-
     try {
-      const response = await fetch(
-        'http://localhost:3001/api/v1/user/profile',
-        {
-          method: 'PUT',
-          headers: getHeaders(),
-          body: JSON.stringify({ firstName, lastName }),
-        },
-      )
-
-      if (response.ok) {
-        const data = await response.json()
-        dispatch(updateUserProfileSuccess(data.body))
-      } else {
-        throw new Error('Erreur de mise à jour du profil : ' + response.status)
-      }
+      const data = await updateUserProfileInAPI(firstName, lastName)
+      dispatch(updateUserProfileSuccess(data.body))
     } catch (error) {
       console.error(error)
       dispatch(updateUserProfileFailure(error))
     }
   }
-}
+
 export const storeUserCredentials = (email, password) => ({
   type: 'STORE_USER_CREDENTIALS',
   payload: { email, password },

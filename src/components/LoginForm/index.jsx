@@ -1,15 +1,9 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import {
-  loginSuccess,
-  setUserProfile,
-  storeUserCredentials,
-} from '../../actions/userActions'
+import { authenticateAndFetchProfile } from '../../actions/userActions'
 import { useNavigate } from 'react-router-dom'
 import LoginForm from './LoginForm'
 import styles from './Login.module.css'
-import { authenticateUser } from '../../api/authAPI'
-import { fetchUserProfile } from '../../api/profileAPI'
 
 /**
  * A component that provides an interface for user authentication.
@@ -26,16 +20,17 @@ const Login = () => {
 
   const handleLogin = async (username, password) => {
     try {
-      const userData = await authenticateUser(username, password)
-
-      // Stocke les informations d'identification
-      dispatch(storeUserCredentials(username, password))
-      dispatch(loginSuccess(userData))
-
-      const userProfile = await fetchUserProfile(userData.token)
-      dispatch(setUserProfile(userProfile))
-
-      navigate('/user')
+      const isSuccess = await dispatch(
+        authenticateAndFetchProfile(username, password),
+      )
+      if (isSuccess) {
+        navigate('/user')
+      } else {
+        // Gérer l'échec ici, par exemple afficher un message d'erreur à l'utilisateur.
+        console.log(
+          "Erreur lors de l'authentification ou de la récupération du profil.",
+        )
+      }
     } catch (error) {
       console.log(error)
     }
