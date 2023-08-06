@@ -58,18 +58,15 @@ mongo --version
 
 ### Configuration du Backend
 
-Vous avez le choix entre deux backends : le backend principal (Project-10-Bank-API) et un backend optionnel (p13_bank_app_backend). Suivez les étapes en fonction de votre choix.
+Vous avez le choix entre deux backends : le backend principal **(Project-10-Bank-API)** et un backend optionnel **(p13_bank_app_backend)**. Suivez les étapes en fonction de votre choix.
 
 **Backend Principal - Project-10-Bank-API**
 
 - Le backend principal est fourni avec l'exercice.
 - Pour l'utiliser, assurez-vous que la variable d'environnement `REACT_APP_USE_MOCK_DATA` est définie à `true` dans le fichier `.env` de ce projet frontend.
 
-- Clonez le backend principal :
-
-  ```bash
-  git clone https://github.com/OpenClassrooms-Student-Center/Project-10-Bank-API
-  ```
+- Vous pouvez accéder au dépôt du backend principal en visitant le lien suivant :
+  [Project-10-Bank-API](https://github.com/OpenClassrooms-Student-Center/Project-10-Bank-API)
 
 #### Backend Optionnel - p13_bank_app_backend
 
@@ -105,4 +102,4 @@ Pour accéder à la documentation complète de l'API, incluant les endpoints add
 
 Le Swagger Editor affichera alors la documentation complète de l'API incluant les endpoints additionnels.
 
-**Note :** Si vous utilisez le backend optionnel, la documentation finale Swagger est également accessible directement à cette adresse : [http://localhost:3001/api-docs/](http://localhost:3001/api-docs/).
+**Note :** Si vous utilisez le backend optionnel **p13_bank_app_backend**, la documentation finale Swagger est également accessible directement à cette adresse : [http://localhost:3001/api-docs/](http://localhost:3001/api-docs/).
