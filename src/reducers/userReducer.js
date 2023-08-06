@@ -1,25 +1,36 @@
+import {
+  LOGIN_SUCCESS,
+  LOGOUT,
+  SET_USER_PROFILE,
+  UPDATE_USER_PROFILE_REQUEST,
+  UPDATE_USER_PROFILE_SUCCESS,
+  UPDATE_USER_PROFILE_FAILURE,
+} from '../actions/userActions'
+
 const initialState = {
   isLoggedIn: false,
   user: null,
   loading: false,
+  updating: false,
   error: null,
+  updateError: null,
 }
 
 const userReducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'LOGIN_SUCCESS':
+    case LOGIN_SUCCESS:
       return {
         ...state,
         isLoggedIn: true,
         user: action.payload,
       }
-    case 'LOGOUT':
+    case LOGOUT:
       return {
         ...state,
         isLoggedIn: false,
         user: null,
       }
-    case 'SET_USER_PROFILE':
+    case SET_USER_PROFILE:
       return {
         ...state,
         user: {
@@ -27,25 +38,26 @@ const userReducer = (state = initialState, action) => {
           ...action.payload,
         },
       }
-    case 'UPDATE_USER_PROFILE_REQUEST':
+    case UPDATE_USER_PROFILE_REQUEST:
       return {
         ...state,
-        loading: true,
+        updating: true,
+        updateError: null,
       }
-    case 'UPDATE_USER_PROFILE_SUCCESS':
+    case UPDATE_USER_PROFILE_SUCCESS:
       return {
         ...state,
-        loading: false,
+        updating: false,
         user: {
           ...state.user,
           ...action.payload,
         },
       }
-    case 'UPDATE_USER_PROFILE_FAILURE':
+    case UPDATE_USER_PROFILE_FAILURE:
       return {
         ...state,
-        loading: false,
-        error: action.payload,
+        updating: false,
+        updateError: action.payload,
       }
     case 'user/signOut':
       return { ...initialState }

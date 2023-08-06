@@ -26,7 +26,6 @@ const Login = () => {
       if (isSuccess) {
         navigate('/user')
       } else {
-        // Gérer l'échec ici, par exemple afficher un message d'erreur à l'utilisateur.
         console.log(
           "Erreur lors de l'authentification ou de la récupération du profil.",
         )

@@ -10,9 +10,9 @@ import {
 const initialState = {
   transactions: [],
   loading: false,
-  updating: false, // Ajout pour indiquer si une mise à jour est en cours
+  updating: false,
   error: null,
-  updateError: null, // Ajout pour gérer les erreurs de mise à jour
+  updateError: null,
 }
 
 const transactionReducer = (state = initialState, action) => {
