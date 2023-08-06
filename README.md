@@ -81,3 +81,14 @@ Vous avez le choix entre deux backends : le backend principal (Project-10-Bank-A
   ```bash
   git clone https://github.com/5sensprod/p13_bank_app_backend
   ```
+
+## 🚀 Lancement de l'application frontend
+
+Une fois que vous avez correctement configuré et lancé le serveur backend de votre choix, procédez comme suit pour démarrer l'application frontend :
+
+1. Dans votre terminal, naviguez vers le répertoire du projet frontend (si ce n'est pas déjà fait) :
+
+   ```bash
+   cd p13_bank_app
+   npm start
+   ```
