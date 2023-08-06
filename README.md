@@ -71,7 +71,7 @@ Vous avez le choix entre deux backends : le backend principal **(Project-10-Bank
 #### Backend Optionnel - p13_bank_app_backend
 
 - Si vous souhaitez une expérience enrichie avec des données réelles des comptes et des transactions, optez pour ce backend :
-  **[p13_bank_app_backend]**(https://github.com/5sensprod/p13_bank_app_backend)
+  [p13_bank_app_backend](https://github.com/5sensprod/p13_bank_app_backend)
 - Pour l'utiliser, assurez-vous que la variable d'environnement `REACT_APP_USE_MOCK_DATA` est définie à `false` dans le fichier `.env` de ce projet frontend.
 
 ## 🚀 Lancement de l'application frontend
