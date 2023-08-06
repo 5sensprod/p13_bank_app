@@ -92,3 +92,19 @@ Une fois que vous avez correctement configuré et lancé le serveur backend de v
    cd p13_bank_app
    npm start
    ```
+
+   ## 📚 Documentation
+
+### Documentation API avec endpoints additionnels
+
+Pour accéder à la documentation complète de l'API, incluant les endpoints additionnels relatifs aux transactions, veuillez suivre ces étapes :
+
+1. Rendez-vous sur [ce lien](https://github.com/5sensprod/p13_bank_app/blob/main/swagger.yaml) pour accéder au fichier `swagger.yaml`.
+2. Copiez l'intégralité du contenu du fichier YAML.
+3. Ouvrez le [Swagger Editor](https://editor.swagger.io/).
+4. Supprimez tout le contenu existant dans le volet de modification sur la gauche.
+5. Collez le contenu que vous avez copié depuis le fichier YAML dans le volet de modification.
+
+Le Swagger Editor affichera alors la documentation complète de l'API incluant les endpoints additionnels.
+
+**Note :** Si vous utilisez le backend optionnel, la documentation finale Swagger est également accessible directement à cette adresse : [http://localhost:3001/api-docs/](http://localhost:3001/api-docs/).
