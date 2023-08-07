@@ -3,13 +3,21 @@
     color: #2c3e50;
 }
 
+.mainNavItemContainer {
+    height: 100%;
+}
 
-@media (max-width: 415px) {
+
+@media (max-width: 430px) {
     .mainNavItemText {
-      display: none;
+        display: none;
     }
+
     .mainNavItemIcon {
         display: none;
     }
-    }
 
+    /* .mainNavItemContainer {
+        height: 30px;
+    } */
+}

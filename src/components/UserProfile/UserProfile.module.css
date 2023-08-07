@@ -102,6 +102,9 @@
     .account {
         margin: 0 auto .9rem;
     }
+    .accountAmount {
+        font-size: 1.8rem;
+    }
   }
 
 /* Propriétés pour la classe .srOnly (Screen Reader Only) */

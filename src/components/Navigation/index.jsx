@@ -14,7 +14,7 @@ const Navigation = () => {
   }
 
   return (
-    <div>
+    <div className={styles.mainNavItemContainer}>
       {!isLoggedIn && (
         <Link className={styles.mainNavItem} to="/sign-in">
           <i className="fa fa-user-circle"></i>

@@ -7,9 +7,11 @@
 }
 
 .transactionTable {
-  width: 100%;
+  width: 99%;
   border-collapse: collapse;
   margin-top: 100px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .transactionRow {
