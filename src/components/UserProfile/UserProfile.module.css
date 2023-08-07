@@ -15,7 +15,7 @@
     flex-direction: column;
     padding: 1.5rem;
     box-sizing: border-box;
-    text-align:  center;
+    text-align: center;
 }
 
 .account {
@@ -102,10 +102,11 @@
     .account {
         margin: 0 auto .9rem;
     }
+
     .accountAmount {
         font-size: 1.8rem;
     }
-  }
+}
 
 /* Propriétés pour la classe .srOnly (Screen Reader Only) */
 .srOnly {
