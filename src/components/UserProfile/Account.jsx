@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import Button from '../Button'
 import styles from './UserProfile.module.css'
 import { useNavigate } from 'react-router-dom'
 import { currencyFormatter } from '../../utils/formats.js'
@@ -34,12 +35,11 @@ const Account = ({ account }) => {
         <p className={styles.accountAmountDescription}>{account.description}</p>
       </div>
       <div className={`${styles.accountContentWrapper} ${styles.cta}`}>
-        <button
+        <Button
           className={styles.transactionButton}
           onClick={handleViewTransactions}
-        >
-          View transactions
-        </button>
+          label="View transactions"
+        />
       </div>
     </section>
   )

@@ -1,12 +1,13 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
+import UserName from '../UserName'
 import { signOut } from '../../actions/userActions'
 import styles from './Navigation.module.css'
 
 const Navigation = () => {
   const dispatch = useDispatch()
-  const { isLoggedIn, user } = useSelector((state) => state.user)
+  const isLoggedIn = useSelector((state) => state.user.isLoggedIn)
 
   const handleSignOut = (event) => {
     event.preventDefault()
@@ -27,7 +28,7 @@ const Navigation = () => {
             <span className={styles.mainNavItemIcon}>
               <i className="fa fa-user-circle"></i>
             </span>
-            {user?.firstName}
+            <UserName display="first" />
           </Link>
           <Link className={styles.mainNavItem} to="/" onClick={handleSignOut}>
             <i className="fa fa-sign-out"></i>

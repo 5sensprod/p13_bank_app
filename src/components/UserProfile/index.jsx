@@ -1,101 +1,57 @@
-import React, { useState, useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import React from 'react'
 import AccountSection from './AccountSection'
-import NameEditor from './NameEditor'
-import { updateUserProfile, fetchUserProfile } from '../../actions/userActions'
-import { fetchUserAccounts } from '../../actions/accountActions'
+import NameEditControl from './NameEditControl'
+import UserName from '../UserName'
+import StatusMessage from './StatusMessage'
+import useUserProfileData from './useUserProfileData'
 import styles from './UserProfile.module.css'
 
 /**
- * A component that displays the user's profile including their name and associated accounts.
- * It allows users to edit their first and last name. Also, it handles fetching and displaying
- * of the user's profile and accounts.
+ * UserProfile Component.
+ *
+ * This component displays the user's profile information with the option to edit the user's name.
+ * It also displays a list of accounts associated with the user and a status message
+ * indicating loading or error states.
  *
  * @component
- * @returns {React.ReactNode} The rendered user profile page, which may display the user's name,
- * associated accounts, or error/loading messages.
  */
 
 const UserProfile = () => {
-  const dispatch = useDispatch()
-  const user = useSelector((state) => state.user.user)
-  const accounts = useSelector((state) => state.accounts.accounts)
-  const loadingAccounts = useSelector((state) => state.accounts.loading)
-  const errorAccounts = useSelector((state) => state.accounts.error)
-
-  const [editMode, setEditMode] = useState(false)
-  const [newFirstName, setNewFirstName] = useState(user.firstName)
-  const [newLastName, setNewLastName] = useState(user.lastName)
-
-  useEffect(() => {
-    setNewFirstName(user.firstName)
-    setNewLastName(user.lastName)
-  }, [user.firstName, user.lastName])
-
-  useEffect(() => {
-    // Action pour obtenir le profil de l'utilisateur dès que le composant est monté.
-    dispatch(fetchUserProfile())
-  }, [dispatch])
-
-  const userId = user && user.id // Extraction de l'expression complexe en une variable séparée
-
-  useEffect(() => {
-    // Ensuite, avec l'ID de l'utilisateur, obtention de ses comptes
-    if (userId) {
-      dispatch(fetchUserAccounts(userId))
-    }
-  }, [dispatch, userId]) // Nous nous assurons de ne dépendre que de user.id, pas de l'objet user entier.
-
-  const handleEdit = () => {
-    setEditMode(true)
-  }
-
-  const handleSave = (firstName, lastName) => {
-    dispatch(updateUserProfile({ firstName, lastName }))
-    setEditMode(false)
-  }
-
-  const handleCancel = () => {
-    setNewFirstName(user.firstName)
-    setNewLastName(user.lastName)
-    setEditMode(false)
-  }
-
-  const userName =
-    user.firstName && user.lastName
-      ? `${user.firstName} ${user.lastName}`
-      : 'Loading...'
-
-  if (loadingAccounts) {
-    return <div>Loading accounts...</div>
-  }
-
-  if (errorAccounts) {
-    return <div>Error loading accounts: {errorAccounts.message}</div>
-  }
+  const {
+    accounts,
+    loadingAccounts,
+    errorAccounts,
+    editMode,
+    newFirstName,
+    newLastName,
+    handleEdit,
+    handleSave,
+    handleCancel,
+  } = useUserProfileData()
 
   return (
     <>
-      <div className={styles.header}>
-        <h1>
-          Welcome back
-          <br />
-          {userName}!
-        </h1>
-        {editMode ? (
-          <NameEditor
-            initialFirstName={newFirstName}
-            initialLastName={newLastName}
-            onSave={handleSave}
-            onCancel={handleCancel}
-          />
-        ) : (
-          <button className={styles.editButton} onClick={handleEdit}>
-            Edit Name
-          </button>
-        )}
-      </div>
-      <AccountSection accounts={accounts} />
+      <StatusMessage isLoading={loadingAccounts} error={errorAccounts} />
+      {!loadingAccounts && !errorAccounts && (
+        <>
+          <div className={styles.header}>
+            <h1>
+              Welcome back
+              <br />
+              <UserName />!
+            </h1>
+            <NameEditControl
+              editMode={editMode}
+              newFirstName={newFirstName}
+              newLastName={newLastName}
+              onSave={handleSave}
+              onCancel={handleCancel}
+              onEdit={handleEdit}
+            />
+          </div>
+          <AccountSection accounts={accounts} />
+        </>
+      )}
     </>
   )
 }

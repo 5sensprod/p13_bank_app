@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import Button from '../Button'
 import PropTypes from 'prop-types'
 import styles from './UserProfile.module.css'
 
@@ -47,12 +48,16 @@ const NameEditor = ({
         <input type="text" value={lastName} onChange={handleLastNameChange} />
       </div>
       <div>
-        <button className={styles.editSaveButton} onClick={handleSaveClick}>
-          Save
-        </button>
-        <button className={styles.editCancelButton} onClick={handleCancelClick}>
-          Cancel
-        </button>
+        <Button
+          className={styles.editSaveButton}
+          onClick={handleSaveClick}
+          label="Save"
+        />
+        <Button
+          className={styles.editCancelButton}
+          onClick={handleCancelClick}
+          label="Cancel"
+        />
       </div>
     </>
   )
