@@ -56,13 +56,24 @@ const TransactionList = ({ accountId }) => {
             <React.Fragment key={transaction._id}>
               <tr
                 className={style.transactionRow}
-                onClick={() =>
-                  setExpandedTransaction(
+                onClick={() => {
+                  // Vérifier si la transaction est déjà élargie
+                  const isCurrentTransactionExpanded =
                     expandedTransaction === transaction._id
-                      ? null
-                      : transaction._id,
+
+                  // Basculer l'élargissement de la transaction
+                  setExpandedTransaction(
+                    isCurrentTransactionExpanded ? null : transaction._id,
                   )
-                }
+
+                  // Si la transaction n'est pas déjà élargie, mettre à jour les editedValues
+                  if (!isCurrentTransactionExpanded) {
+                    setEditedValues({
+                      category: transaction.category || '',
+                      notes: transaction.notes || '',
+                    })
+                  }
+                }}
               >
                 <td>
                   {expandedTransaction === transaction._id ? (
@@ -85,10 +96,11 @@ const TransactionList = ({ accountId }) => {
                         <p
                           onClick={() => {
                             setIsEditing('category')
-                            setEditedValues({
-                              ...editedValues,
+                            setEditedValues((prevValues) => ({
+                              ...prevValues,
                               category: transaction.category,
-                            })
+                              notes: transaction.notes || prevValues.notes, // fallback to existing edited notes if transaction.notes is not set
+                            }))
                           }}
                         >
                           Category: {transaction.category}{' '}
@@ -120,10 +132,12 @@ const TransactionList = ({ accountId }) => {
                         <p
                           onClick={() => {
                             setIsEditing('notes')
-                            setEditedValues({
-                              ...editedValues,
+                            setEditedValues((prevValues) => ({
+                              ...prevValues,
                               notes: transaction.notes,
-                            })
+                              category:
+                                transaction.category || prevValues.category, // fallback to existing edited category if transaction.category is not set
+                            }))
                           }}
                         >
                           Notes: {transaction.notes}{' '}
