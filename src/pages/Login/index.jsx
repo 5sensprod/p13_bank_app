@@ -1,4 +1,3 @@
-// LoginPage/index.jsx
 import React from 'react'
 import styles from './Login.module.css'
 import LoginForm from '../../components/LoginForm'
