@@ -7,6 +7,19 @@ import NotFound from '../pages/NotFound'
 import PrivateRoute from './PrivateRoute'
 import Transactions from '../pages/Transactions'
 
+/**
+ * AppRouter est le composant qui gère les différentes routes de l'application.
+ * Il définit les chemins et les composants qui doivent être rendus à chaque chemin.
+ * Les routes protégées nécessitant une authentification sont enveloppées par le composant PrivateRoute.
+ *
+ * @example
+ * ```jsx
+ * <AppRouter />
+ * ```
+ *
+ * @returns {React.ReactNode} - Les routes de l'application.
+ */
+
 const AppRouter = () => {
   return (
     <Routes>
