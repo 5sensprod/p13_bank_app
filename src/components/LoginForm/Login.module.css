@@ -46,3 +46,9 @@
   padding: 5px;
   font-size: 1.2rem;
 }
+
+.errorMessage {
+  color: red;
+  font-size: 0.8rem;
+  margin-top: 0.5rem;
+}

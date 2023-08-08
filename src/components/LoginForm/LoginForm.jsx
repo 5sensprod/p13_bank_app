@@ -1,53 +1,58 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
+import Button from '../Button'
+import InputField from './InputField'
 import styles from './Login.module.css'
+import useValidation from '../hooks/useValidation'
 
 /**
- * A component that provides a login form for users to input their username and password.
+ * LoginForm is a component that presents a form for user authentication.
+ * The form collects a username and password, validates the inputs, and
+ * upon submission, it uses the passed in handleLogin function to handle
+ * the authentication logic.
  *
- * @component
- * @param {Object} props
- * @param {function} props.handleLogin - Callback function to handle the login process.
- * Receives two parameters: the inputted username and password.
+ * @param {Object} props The component props.
+ * @param {function} props.handleLogin The callback function to handle the login process.
  * @returns {React.ReactNode} The rendered login form.
  */
-
 const LoginForm = ({ handleLogin }) => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
+  const { error, validateInputs } = useValidation()
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    handleLogin(username, password)
+    if (validateInputs(username, password)) {
+      handleLogin(username, password)
+    }
   }
 
   return (
     <form onSubmit={handleSubmit}>
-      <div className={styles.inputWrapper}>
-        <label htmlFor="username">Username</label>
-        <input
-          type="text"
-          id="username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-      </div>
-      <div className={styles.inputWrapper}>
-        <label htmlFor="password">Password</label>
-        <input
-          type="password"
-          id="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-      </div>
+      <InputField
+        id="username"
+        label="Username"
+        type="text"
+        value={username}
+        onChange={(e) => setUsername(e.target.value)}
+        error={error.includes('Username') ? error : null}
+      />
+
+      <InputField
+        id="password"
+        label="Password"
+        type="password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        error={error.includes('Password') ? error : null}
+      />
+
       <div className={styles.inputRemember}>
         <input type="checkbox" id="remember-me" />
         <label htmlFor="remember-me">Remember me</label>
       </div>
-      <button className={styles.signInButton} type="submit">
-        Sign In
-      </button>
+
+      <Button className={styles.signInButton} type="submit" label="Sign In" />
     </form>
   )
 }

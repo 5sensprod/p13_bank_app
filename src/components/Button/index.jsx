@@ -9,14 +9,19 @@ import styles from './Button.module.css'
  *
  * @component
  * @param {string} className - Additional CSS class for the button.
- * @param {function} onClick - Click handler for the button.
- * @param {React.ReactNode} children - Content of the button.
+ * @param {function} onClick - Click handler for the button. Not required for submit/reset buttons.
+ * @param {string} label - The text displayed on the button.
+ * @param {("button"|"submit"|"reset")} type - The type of the button. Determines its behavior in a form context.
  * @returns {React.ReactNode}
  */
 
-const Button = ({ className, onClick, label }) => {
+const Button = ({ className, onClick, label, type }) => {
   return (
-    <button className={`${styles.button} ${className}`} onClick={onClick}>
+    <button
+      type={type}
+      className={[styles.button, className].filter(Boolean).join(' ')}
+      onClick={onClick ? onClick : undefined}
+    >
       {label}
     </button>
   )
@@ -24,12 +29,14 @@ const Button = ({ className, onClick, label }) => {
 
 Button.propTypes = {
   className: PropTypes.string,
-  onClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
   label: PropTypes.string.isRequired,
+  type: PropTypes.oneOf(['button', 'submit', 'reset']),
 }
 
 Button.defaultProps = {
   className: '',
+  onClick: undefined,
 }
 
 export default Button

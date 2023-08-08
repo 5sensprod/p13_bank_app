@@ -1,15 +1,10 @@
 import React from 'react'
 
-const StatusMessage = ({ isLoading, error }) => {
-  if (isLoading) {
-    return <div>Loading accounts...</div>
-  }
-
-  if (error) {
-    return <div>Error loading accounts: {error.message}</div>
-  }
-
-  return null
-}
+const StatusMessage = ({ isLoading, error }) =>
+  isLoading ? (
+    <div>Loading accounts...</div>
+  ) : error ? (
+    <div>Error loading accounts: {error.message}</div>
+  ) : null
 
 export default StatusMessage
