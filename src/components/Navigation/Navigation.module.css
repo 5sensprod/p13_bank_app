@@ -6,14 +6,21 @@
 .mainNavItemContainer {
     height: 100%;
     font-weight: bold;
+    display: flex;
+    width: auto;
+    gap: 9px;
 }
 
 .mainNavItemText {
     font-weight: bold;
 }
 
+.mainNavItemText:hover, .mainNavItem:hover {
+    text-decoration: underline;
+}
 
-@media (max-width: 445px) {
+
+@media (max-width: 450px) {
     .mainNavItemText {
         display: none;
 

@@ -24,10 +24,10 @@ const Navigation = () => {
       )}
       {isLoggedIn && (
         <>
+          <span className={styles.mainNavItemIcon}>
+            <i className="fa fa-user-circle"></i>
+          </span>
           <Link className={styles.mainNavItem} to="/user">
-            <span className={styles.mainNavItemIcon}>
-              <i className="fa fa-user-circle"></i>
-            </span>
             <UserName display="first" />
           </Link>
           <Link className={styles.mainNavItem} to="/" onClick={handleSignOut}>

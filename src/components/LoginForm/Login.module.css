@@ -10,6 +10,11 @@
   color: #fff;
 }
 
+.signInButton:hover, .inputRemember:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
 .signInContent {
   box-sizing: border-box;
   background-color: white;
