@@ -14,11 +14,11 @@ import styles from './Feature.module.css'
  * @returns {React.ReactNode} A rendered feature item with an icon, title, and description.
  */
 
-const Feature = ({ imgSrc, imgAlt, title, description }) => (
+const Feature = ({ imgSrc, imgAlt, title, text }) => (
   <div className={styles.featureItem}>
     <img src={imgSrc} alt={imgAlt} className={styles.featureIcon} />
     <h3 className={styles.featureItemTitle}>{title}</h3>
-    <p>{description}</p>
+    <p>{text}</p>
   </div>
 )
 

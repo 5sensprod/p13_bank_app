@@ -5,12 +5,18 @@
 
 .mainNavItemContainer {
     height: 100%;
+    font-weight: bold;
+}
+
+.mainNavItemText {
+    font-weight: bold;
 }
 
 
-@media (max-width: 430px) {
+@media (max-width: 445px) {
     .mainNavItemText {
         display: none;
+
     }
 
     .mainNavItemIcon {

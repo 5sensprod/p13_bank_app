@@ -25,6 +25,7 @@ const Hero = ({ title, subtitles, text }) => {
             {subtitle}
           </p>
         ))}
+        <br />
         <p className={styles.text}>{text}</p>
       </section>
     </div>
