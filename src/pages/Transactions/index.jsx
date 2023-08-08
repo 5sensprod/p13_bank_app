@@ -2,7 +2,7 @@ import React from 'react'
 import styles from './Transactions.module.css'
 import { useLocation } from 'react-router-dom'
 import TransactionList from '../../components/TransactionList'
-import AccountDetails from '../../components/UserProfile/AccountDetails'
+import AccountDetails from '../../components/Account/AccountDetails'
 import { useSelector } from 'react-redux'
 
 const Transactions = () => {

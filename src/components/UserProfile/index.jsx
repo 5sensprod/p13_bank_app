@@ -1,5 +1,5 @@
 import React from 'react'
-import AccountSection from './AccountSection'
+import AccountSection from '../Account/AccountSection'
 import NameEditControl from './NameEditControl'
 import UserName from '../UserName'
 import StatusMessage from './StatusMessage'
