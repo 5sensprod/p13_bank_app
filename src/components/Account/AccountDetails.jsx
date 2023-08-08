@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import styles from './UserProfile.module.css'
+import styles from './Account.module.css'
 import { currencyFormatter } from '../../utils/formats.js'
 
 /**

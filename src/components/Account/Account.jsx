@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Button from '../Button'
-import styles from './UserProfile.module.css'
+import styles from './Account.module.css'
 import { useNavigate } from 'react-router-dom'
 import { currencyFormatter } from '../../utils/formats.js'
 

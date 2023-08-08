@@ -4,56 +4,6 @@
     margin-bottom: 2rem;
 }
 
-.accountDetail {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border: 3px solid #9eadba;
-    background-color: #fff;
-    width: 100%;
-    margin: 0 auto 2rem;
-    flex-direction: column;
-    padding: 1.5rem;
-    box-sizing: border-box;
-    text-align: center;
-}
-
-.account {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border: 1px solid black;
-    background-color: #fff;
-    width: 80%;
-    margin: 0 auto 2rem;
-    flex-direction: column;
-    padding: 1.5rem;
-    box-sizing: border-box;
-    text-align: left;
-}
-
-.accountAmount {
-    margin: 0;
-    font-size: 2.5rem;
-    font-weight: bold;
-}
-
-.accountAmountDescription,
-.accountTitle {
-    margin: 0;
-}
-
-.accountTitle {
-    padding: 0;
-    font-size: 1rem;
-    font-weight: normal;
-}
-
-.accountContentWrapper {
-    width: 100%;
-    flex: 1;
-}
-
 .editButton,
 .editSaveButton,
 .editCancelButton,
@@ -75,50 +25,6 @@
     margin-top: 25px;
 }
 
-.transactionButton {
-    display: block;
-    width: 100%;
-    padding: 8px;
-    font-size: 1.1rem;
-    margin-top: 1rem;
-}
-
-/* Media queries */
-@media (min-width: 720px) {
-    .account {
-        flex-direction: row;
-    }
-
-    .cta {
-        flex: 0;
-    }
-
-    .transactionButton {
-        width: 200px;
-    }
-}
-
-@media (max-width: 410px) {
-    .account {
-        margin: 0 auto .9rem;
-    }
-
-    .accountAmount {
-        font-size: 1.8rem;
-    }
-}
-
-/* Propriétés pour la classe .srOnly (Screen Reader Only) */
-.srOnly {
-    border: 0 !important;
-    clip: rect(1px, 1px, 1px, 1px) !important;
-    -webkit-clip-path: inset(50%) !important;
-    clip-path: inset(50%) !important;
-    height: 1px !important;
-    margin: -1px !important;
-    overflow: hidden !important;
-    padding: 0 !important;
-    position: absolute !important;
-    width: 1px !important;
-    white-space: nowrap !important;
+.editButton:hover,.editSaveButton:hover,.editCancelButton:hover {
+    cursor: pointer;
 }

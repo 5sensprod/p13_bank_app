@@ -1,4 +1,4 @@
-import styles from './UserProfile.module.css'
+import styles from './Account.module.css'
 import PropTypes from 'prop-types'
 import Account from './Account'
 
