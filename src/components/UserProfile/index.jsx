@@ -3,7 +3,7 @@ import AccountSection from '../Account/AccountSection'
 import NameEditControl from './NameEditControl'
 import UserName from '../UserName'
 import StatusMessage from './StatusMessage'
-import useUserProfileData from './useUserProfileData'
+import useUserProfileData from '../hooks/useUserProfileData'
 import styles from './UserProfile.module.css'
 
 /**
