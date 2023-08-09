@@ -33,7 +33,7 @@ const useAuthentication = () => {
       }
     } catch (err) {
       // Affichage du message d'erreur spécifique
-      setError(err.message)
+      setError('Sorry, user not found!')
       return err
     }
   }

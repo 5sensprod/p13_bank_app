@@ -52,8 +52,12 @@
   font-size: 1.2rem;
 }
 
-.errorMessage {
+.errorMessage, .errorNotification {
   color: red;
   font-size: 0.8rem;
   margin-top: 0.5rem;
+}
+
+.errorNotification {
+  margin-bottom: 20px;
 }
