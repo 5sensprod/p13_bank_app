@@ -13,12 +13,16 @@ import styles from './Login.module.css'
  */
 
 const Login = () => {
-  const { authenticate } = useAuthentication()
+  const { authenticate, error } = useAuthentication()
 
   return (
     <section className={styles.signInContent}>
       <i className={`fa fa-user-circle ${styles.signInIcon}`}></i>
       <h1>Sign In</h1>
+
+      {/* Display error if any */}
+      {error && <div className={styles.errorNotification}>{error}</div>}
+
       <LoginForm handleLogin={authenticate} />
     </section>
   )

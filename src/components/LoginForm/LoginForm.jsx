@@ -18,7 +18,7 @@ import useValidation from '../hooks/useValidation'
 const LoginForm = ({ handleLogin }) => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
-  const { error, validateInputs } = useValidation()
+  const { error: validationError, validateInputs } = useValidation()
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -35,7 +35,7 @@ const LoginForm = ({ handleLogin }) => {
         type="text"
         value={username}
         onChange={(e) => setUsername(e.target.value)}
-        error={error.includes('Username') ? error : null}
+        error={validationError.includes('Username') ? validationError : null}
       />
 
       <InputField
@@ -44,7 +44,7 @@ const LoginForm = ({ handleLogin }) => {
         type="password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
-        error={error.includes('Password') ? error : null}
+        error={validationError.includes('Password') ? validationError : null}
       />
 
       <div className={styles.inputRemember}>

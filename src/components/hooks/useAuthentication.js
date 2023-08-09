@@ -22,27 +22,17 @@ const useAuthentication = () => {
   const navigate = useNavigate()
   const [error, setError] = useState(null)
 
-  /**
-   * Authentifie l'utilisateur en utilisant ses identifiants.
-   *
-   * @param {string} username - Le nom d'utilisateur.
-   * @param {string} password - Le mot de passe de l'utilisateur.
-   * @return {Promise<Error|null>} Une erreur en cas d'échec, ou null en cas de succès.
-   */
   const authenticate = async (username, password) => {
     try {
       const isSuccess = await dispatch(
         authenticateAndFetchProfile(username, password),
       )
+
       if (isSuccess) {
         navigate('/user')
-      } else {
-        throw new Error(
-          "Erreur lors de l'authentification ou de la récupération du profil.",
-        )
       }
     } catch (err) {
-      console.error(err)
+      // Affichage du message d'erreur spécifique
       setError(err.message)
       return err
     }

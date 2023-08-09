@@ -108,11 +108,7 @@ export const authenticateAndFetchProfile =
 
       return true // Succès
     } catch (error) {
-      console.error(
-        "Erreur lors de l'authentification ou de la récupération du profil:",
-        error,
-      )
-      return false // Échec
+      throw error
     }
   }
 
