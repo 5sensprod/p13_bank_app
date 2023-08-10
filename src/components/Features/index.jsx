@@ -15,7 +15,7 @@ import styles from './Features.module.css'
 const Features = () => (
   <section className={styles.features}>
     <h2 className={styles.srOnly}>Features</h2>
-    {featuresData.map((feature, index) => (
+    {featuresData.map((feature) => (
       <Feature key={feature.id} {...feature} />
     ))}
   </section>
