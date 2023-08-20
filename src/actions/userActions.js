@@ -14,56 +14,60 @@ export const UPDATE_USER_PROFILE_SUCCESS = 'UPDATE_USER_PROFILE_SUCCESS'
 export const UPDATE_USER_PROFILE_FAILURE = 'UPDATE_USER_PROFILE_FAILURE'
 
 /**
- * Action creator for successful login.
- * @param {Object} user - The authenticated user data.
- * @returns {Object} - Action object.
+ * Crée une action pour une connexion réussie.
+ * @param {Object} user - Les données de l'utilisateur authentifié.
+ * @returns {Object} - L'objet action.
  */
+
 export const loginSuccess = (user) => ({
   type: LOGIN_SUCCESS,
   payload: user,
 })
 
 /**
- * Action creator for logging out.
- * @returns {Object} - Action object.
+ * Crée une action pour déconnecter l'utilisateur.
+ * @returns {Object} - L'objet de l'action.
  */
+
 export const logout = () => ({
   type: LOGOUT,
 })
 
 /**
- * Action creator to set user profile data.
- * @param {Object} user - The user data.
- * @returns {Object} - Action object.
+ * Crée une action pour définir les données du profil de l'utilisateur.
+ * @param {Object} user - Les données de l'utilisateur.
+ * @returns {Object} - L'objet de l'action.
  */
+
 export const setUserProfile = (user) => ({
   type: SET_USER_PROFILE,
   payload: user,
 })
 
 /**
- * Action creator to store user credentials.
- * @param {string} email - User's email.
- * @param {string} password - User's password.
- * @returns {Object} - Action object.
+ * Crée une action pour stocker les identifiants de l'utilisateur.
+ * @param {string} email - Email de l'utilisateur.
+ * @param {string} password - Mot de passe de l'utilisateur.
+ * @returns {Object} - L'objet de l'action.
  */
+
 export const storeUserCredentials = (email, password) => ({
   type: STORE_USER_CREDENTIALS,
   payload: { email, password },
 })
 
 /**
- * Action creator indicating the start of the user profile update.
- * @returns {Object} - Action object.
+ * Crée une action indiquant le début de la mise à jour du profil utilisateur.
+ * @returns {Object} - L'objet de l'action.
  */
 export const updateUserProfileRequest = () => ({
   type: UPDATE_USER_PROFILE_REQUEST,
 })
 
 /**
- * Action creator for successful user profile update.
- * @param {Object} user - The updated user data.
- * @returns {Object} - Action object.
+ * Crée une action pour une mise à jour réussie du profil utilisateur.
+ * @param {Object} user - Les données mises à jour de l'utilisateur.
+ * @returns {Object} - L'objet de l'action.
  */
 export const updateUserProfileSuccess = (user) => ({
   type: UPDATE_USER_PROFILE_SUCCESS,
@@ -71,9 +75,9 @@ export const updateUserProfileSuccess = (user) => ({
 })
 
 /**
- * Action creator for failed user profile update.
- * @param {Error} error - Error object.
- * @returns {Object} - Action object.
+ * Crée une action pour une mise à jour échouée du profil utilisateur.
+ * @param {Error} error - L'objet d'erreur.
+ * @returns {Object} - L'objet de l'action.
  */
 export const updateUserProfileFailure = (error) => ({
   type: UPDATE_USER_PROFILE_FAILURE,
@@ -81,8 +85,8 @@ export const updateUserProfileFailure = (error) => ({
 })
 
 /**
- * Action creator for user sign out.
- * @returns {Object} - Action object.
+ * Crée une action pour déconnecter l'utilisateur.
+ * @returns {Object} - L'objet de l'action.
  */
 export function signOut() {
   return {
@@ -91,11 +95,12 @@ export function signOut() {
 }
 
 /**
- * Asynchronous action to authenticate and fetch user profile.
- * @param {string} username - The username for authentication.
- * @param {string} password - The password for authentication.
- * @returns {function} - Thunk function for dispatching actions.
+ * Fonction Thunk pour authentifier et récupérer le profil de l'utilisateur.
+ * @param {string} username - Le nom d'utilisateur pour l'authentification.
+ * @param {string} password - Le mot de passe pour l'authentification.
+ * @returns {function} - Fonction Thunk pour dispatcher les actions.
  */
+
 export const authenticateAndFetchProfile =
   (username, password) => async (dispatch) => {
     try {
@@ -113,8 +118,8 @@ export const authenticateAndFetchProfile =
   }
 
 /**
- * Asynchronous action to fetch user profile.
- * @returns {function} - Thunk function for dispatching actions.
+ * Action asynchrone pour récupérer le profil de l'utilisateur.
+ * @returns {function} - Fonction Thunk pour dispatcher les actions.
  */
 export const fetchUserProfile = () => async (dispatch, getState) => {
   try {
@@ -128,9 +133,9 @@ export const fetchUserProfile = () => async (dispatch, getState) => {
 }
 
 /**
- * Asynchronous action to update user profile.
- * @param {Object} data - Object containing the new user data.
- * @returns {function} - Thunk function for dispatching actions.
+ * Action asynchrone pour mettre à jour le profil de l'utilisateur.
+ * @param {Object} data - Objet contenant les nouvelles données de l'utilisateur.
+ * @returns {function} - Fonction Thunk pour dispatcher les actions.
  */
 export const updateUserProfile =
   ({ firstName, lastName }) =>
