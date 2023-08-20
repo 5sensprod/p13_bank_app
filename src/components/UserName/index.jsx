@@ -2,15 +2,15 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 
 /**
- * UserName Component.
+ * Composant UserName.
  *
- * This component displays the user's name based on the specified display type.
- * It can display the user's first name, last name, or both.
+ * Ce composant affiche le nom de l'utilisateur selon le type d'affichage choisi.
+ * Il peut montrer soit le prénom, soit le nom, soit les deux de l'utilisateur.
  *
  * @component
- * @param {Object} props - The props object.
- * @param {('first'|'last'|'full')} props.display - Determines how the user's name should be displayed.
- * Default is 'full'.
+ * @param {Object} props - L'objet des propriétés.
+ * @param {('first'|'last'|'full')} props.display - Détermine comment le nom de l'utilisateur doit être affiché.
+ * Par défaut, c'est 'full'.
  *
  * @example
  * return <UserName display="first" />

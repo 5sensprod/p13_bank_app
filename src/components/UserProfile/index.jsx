@@ -7,13 +7,18 @@ import useUserProfileData from '../hooks/useUserProfileData'
 import styles from './UserProfile.module.css'
 
 /**
- * UserProfile Component.
+ * Composant UserProfile.
  *
- * This component displays the user's profile information with the option to edit the user's name.
- * It also displays a list of accounts associated with the user and a status message
- * indicating loading or error states.
+ * Ce composant affiche les informations du profil utilisateur avec la possibilité de modifier le nom de l'utilisateur.
+ * Il affiche également une liste des comptes associés à l'utilisateur ainsi qu'un message de statut
+ * indiquant les états de chargement ou d'erreur.
  *
  * @component
+ *
+ * @example
+ * <UserProfile />
+ *
+ * @returns {React.ReactNode} - Le rendu du profil utilisateur avec les informations, le contrôle d'édition et les comptes associés.
  */
 
 const UserProfile = () => {
