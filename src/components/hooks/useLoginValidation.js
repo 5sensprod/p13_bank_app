@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-const useValidation = () => {
+const useLoginValidation = () => {
   const [error, setError] = useState('')
 
   const validateInputs = (username, password) => {
@@ -24,4 +24,4 @@ const useValidation = () => {
   }
 }
 
-export default useValidation
+export default useLoginValidation

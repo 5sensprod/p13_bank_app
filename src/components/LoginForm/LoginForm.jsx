@@ -1,41 +1,52 @@
-import React, { useState } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import Button from '../Button'
 import InputField from './InputField'
 import styles from './Login.module.css'
-import useValidation from '../hooks/useValidation'
 
 /**
- * LoginForm is a component that presents a form for user authentication.
- * The form collects a username and password, validates the inputs, and
- * upon submission, it uses the passed in handleLogin function to handle
- * the authentication logic.
+ * LoginForm est un composant de présentation qui affiche un formulaire pour l'authentification utilisateur.
+ * Le formulaire récupère un nom d'utilisateur et un mot de passe, puis soumet les données fournies en utilisant la prop handleLogin.
  *
- * @param {Object} props The component props.
- * @param {function} props.handleLogin The callback function to handle the login process.
- * @returns {React.ReactNode} The rendered login form.
+ * @component
+ * @param {Object} props
+ * @param {string} props.username - La valeur actuelle du champ d'entrée du nom d'utilisateur.
+ * @param {Function} props.setUsername - La fonction pour mettre à jour la valeur du champ d'entrée du nom d'utilisateur.
+ * @param {string} props.password - La valeur actuelle du champ d'entrée du mot de passe.
+ * @param {Function} props.setPassword - La fonction pour mettre à jour la valeur du champ d'entrée du mot de passe.
+ * @param {Function} props.handleLogin - La fonction à appeler lorsque le formulaire est soumis.
+ *
+ * @example
+ * <LoginForm
+ *   username="jean.dupont"
+ *   setUsername={fonctionMiseAJourUsername}
+ *   password="motdepasse123"
+ *   setPassword={fonctionMiseAJourMotDePasse}
+ *   handleLogin={fonctionSoumission}
+ * />
+ *
+ * @returns {React.ReactNode}
  */
-const LoginForm = ({ handleLogin }) => {
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
-  const { error: validationError, validateInputs } = useValidation()
-
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    if (validateInputs(username, password)) {
-      handleLogin(username, password)
-    }
-  }
-
+const LoginForm = ({
+  username,
+  setUsername,
+  password,
+  setPassword,
+  handleLogin,
+}) => {
   return (
-    <form onSubmit={handleSubmit}>
+    <form
+      onSubmit={(e) => {
+        e.preventDefault()
+        handleLogin()
+      }}
+    >
       <InputField
         id="username"
         label="Username"
         type="text"
         value={username}
         onChange={(e) => setUsername(e.target.value)}
-        error={validationError.includes('Username') ? validationError : null}
       />
 
       <InputField
@@ -44,7 +55,6 @@ const LoginForm = ({ handleLogin }) => {
         type="password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
-        error={validationError.includes('Password') ? validationError : null}
       />
 
       <div className={styles.inputRemember}>
@@ -58,6 +68,10 @@ const LoginForm = ({ handleLogin }) => {
 }
 
 LoginForm.propTypes = {
+  username: PropTypes.string.isRequired,
+  setUsername: PropTypes.func.isRequired,
+  password: PropTypes.string.isRequired,
+  setPassword: PropTypes.func.isRequired,
   handleLogin: PropTypes.func.isRequired,
 }
 

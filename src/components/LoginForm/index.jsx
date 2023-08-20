@@ -1,29 +1,56 @@
-import React from 'react'
-import useAuthentication from '../hooks/useAuthentication'
-import LoginForm from './LoginForm'
+import React, { useState } from 'react'
 import styles from './Login.module.css'
+import LoginForm from './LoginForm'
+import useAuthentication from '../hooks/useAuthentication'
+import useLoginValidation from '../hooks/useLoginValidation'
 
 /**
- * A component that provides an interface for user authentication.
- * It presents a login form, handles the authentication process,
- * fetches the user profile upon successful authentication, and navigates to the user's profile page.
+ * Login est un composant qui fournit une interface pour l'authentification des utilisateurs.
+ * Il affiche un formulaire de connexion et gère le processus d'authentification.
+ * Le composant utilise deux hooks personnalisés : `useAuthentication` pour gérer l'authentification
+ * et `useLoginValidation` pour valider les entrées de l'utilisateur avant de tenter de s'authentifier.
+ *
+ * Le processus de validation et d'authentification est déclenché lorsqu'un utilisateur soumet le formulaire de connexion.
  *
  * @component
- * @returns {React.ReactNode} The rendered login interface, including the login form.
+ *
+ * @example
+ * <Login />
+ *
+ * @returns {React.ReactNode} L'interface de connexion rendue, comprenant le formulaire de connexion.
  */
-
 const Login = () => {
-  const { authenticate, error } = useAuthentication()
+  const { authenticate, error: authError } = useAuthentication()
+  const { error: validationError, validateInputs } = useLoginValidation()
+
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
+
+  const handleLogin = () => {
+    if (validateInputs(username, password)) {
+      authenticate(username, password)
+    }
+  }
 
   return (
     <section className={styles.signInContent}>
       <i className={`fa fa-user-circle ${styles.signInIcon}`}></i>
       <h1>Sign In</h1>
 
-      {/* Display error if any */}
-      {error && <div className={styles.errorNotification}>{error}</div>}
+      {/* Combine and display errors from validation and authentication */}
+      {(validationError || authError) && (
+        <div className={styles.errorNotification}>
+          {validationError || authError}
+        </div>
+      )}
 
-      <LoginForm handleLogin={authenticate} />
+      <LoginForm
+        username={username}
+        setUsername={setUsername}
+        password={password}
+        setPassword={setPassword}
+        handleLogin={handleLogin}
+      />
     </section>
   )
 }
