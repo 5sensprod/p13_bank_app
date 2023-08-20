@@ -8,29 +8,53 @@
     font-weight: bold;
     display: flex;
     width: auto;
-    gap: 9px;
+    gap: 15px;
+    transition: gap 0.3s ease-in-out;
 }
 
-.mainNavItemText {
+.signInIcon,
+.userIcon,
+.signOutIcon {
+    margin-right: 5px;
+}
+
+.userIconContainer {
+    margin-right: 0;
+}
+
+.mainNavItemText,
+.signInText,
+.signOutText,
+.userName {
     font-weight: bold;
 }
 
-.mainNavItemText:hover, .mainNavItem:hover {
+.mainNavItemText:hover,
+.signInText:hover,
+.signOutText:hover,
+.userName:hover {
     text-decoration: underline;
 }
 
+.mainNavItemText:hover,
+.mainNavItem:hover {
+    text-decoration: underline;
+}
 
 @media (max-width: 450px) {
-    .mainNavItemText {
-        display: none;
-
-    }
-
-    .mainNavItemIcon {
+    .signOutText {
         display: none;
     }
+}
 
-    /* .mainNavItemContainer {
-        height: 30px;
-    } */
+@media (max-width: 350px) {
+
+    .userIcon,
+    .signInText {
+        display: none;
+    }
+
+    .mainNavItemContainer {
+        gap: 10px;
+    }
 }

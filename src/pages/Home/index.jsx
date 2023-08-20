@@ -6,11 +6,7 @@ import Features from '../../components/Features'
 
 const Home = () => (
   <main className={styles.homeContainer}>
-    <Hero
-      title="Promoted Content"
-      subtitles={['No fees.', 'No minimum deposit.', 'High interest rates.']}
-      text="Open a savings account with Argent Bank today!"
-    />
+    <Hero />
     <Features />
   </main>
 )

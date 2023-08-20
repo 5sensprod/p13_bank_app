@@ -3,6 +3,7 @@ import styles from './Transactions.module.css'
 import { useLocation } from 'react-router-dom'
 import TransactionList from '../../components/TransactionList'
 import AccountDetails from '../../components/Account/AccountDetails'
+import SRTitle from '../../components/SRTitle'
 import { useSelector } from 'react-redux'
 
 const Transactions = () => {
@@ -15,10 +16,8 @@ const Transactions = () => {
 
   return (
     <main className={`${styles.main} ${styles.bgDark}`}>
-      <h2 className={styles.srOnly}>Liste des transactions</h2>
-
+      <SRTitle text="Liste des transactions" />
       {account && <AccountDetails account={account} />}
-
       <TransactionList accountId={accountId} />
     </main>
   )

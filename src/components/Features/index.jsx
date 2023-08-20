@@ -1,7 +1,9 @@
 import React from 'react'
 import Feature from './Feature'
-import featuresData from '../../data/features'
+import featuresData from '../../data/featuresData'
 import styles from './Features.module.css'
+import ListRenderer from '../helpers/ListRenderer'
+import SRTitle from '../SRTitle'
 
 /**
  * A component that displays a list of features. Each feature consists of an icon, title,
@@ -14,10 +16,8 @@ import styles from './Features.module.css'
 
 const Features = () => (
   <section className={styles.features}>
-    <h2 className={styles.srOnly}>Features</h2>
-    {featuresData.map((feature) => (
-      <Feature key={feature.id} {...feature} />
-    ))}
+    <SRTitle text="Features" />
+    <ListRenderer data={featuresData} Component={Feature} />
   </section>
 )
 

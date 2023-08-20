@@ -17,7 +17,7 @@ import { useSelector } from 'react-redux'
  *
  * @returns {React.ReactNode}
  */
-const UserName = ({ display = 'full' }) => {
+const UserName = ({ display = 'full', className }) => {
   const user = useSelector((state) => state.user.user)
 
   const nameDisplay = {
@@ -26,7 +26,7 @@ const UserName = ({ display = 'full' }) => {
     full: `${user?.firstName || 'Loading'} ${user?.lastName || ''}`,
   }
 
-  return <>{nameDisplay[display]}</>
+  return <span className={className}>{nameDisplay[display]}</span>
 }
 
 export default UserName

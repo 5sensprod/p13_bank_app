@@ -1,3 +1,17 @@
+.account {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid black;
+    background-color: #fff;
+    width: 80%;
+    margin: 0 auto 2rem;
+    flex-direction: column;
+    padding: 1.5rem;
+    box-sizing: border-box;
+    text-align: left;
+}
+
 .accountDetail {
     display: flex;
     justify-content: space-between;
@@ -12,19 +26,6 @@
     text-align: center;
 }
 
-.account {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border: 1px solid black;
-    background-color: #fff;
-    width: 80%;
-    margin: 0 auto 2rem;
-    flex-direction: column;
-    padding: 1.5rem;
-    box-sizing: border-box;
-    text-align: left;
-}
 
 .accountAmount {
     margin: 0;
@@ -87,19 +88,4 @@
     .accountAmount {
         font-size: 1.8rem;
     }
-}
-
-/* Propriétés pour la classe .srOnly (Screen Reader Only) */
-.srOnly {
-    border: 0 !important;
-    clip: rect(1px, 1px, 1px, 1px) !important;
-    -webkit-clip-path: inset(50%) !important;
-    clip-path: inset(50%) !important;
-    height: 1px !important;
-    margin: -1px !important;
-    overflow: hidden !important;
-    padding: 0 !important;
-    position: absolute !important;
-    width: 1px !important;
-    white-space: nowrap !important;
 }

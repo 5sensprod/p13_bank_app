@@ -1,41 +1,38 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import styles from './Hero.module.css'
+import SRTitle from '../SRTitle'
+import heroData from '../../data/heroData'
+import ListRenderer from '../helpers/ListRenderer'
 
 /**
- * A hero component that displays a primary title, a list of subtitles,
- * and a main text. Typically used as a prominent part of a web page
- * to present key information or calls to action.
+ * Un composant "Hero" qui affiche un titre principal, une liste de sous-titres,
+ * et un texte principal. Typiquement utilisé comme une partie proéminente d'une page web
+ * pour présenter des informations clés. Les données pour ce composant
+ * sont directement récupérées du fichier 'heroData'.
  *
  * @component
- * @param {string} title - The primary title displayed in the hero section.
- * @param {string[]} subtitles - A list of subtitles displayed in the hero section.
- * @param {string} text - The main text or description displayed in the hero section.
- *
- * @returns {React.ReactNode} The rendered hero section with title, subtitles, and main text.
+ * @returns {React.ReactNode} La section héros rendue avec le titre, les sous-titres et le texte principal.
  */
 
-const Hero = ({ title, subtitles, text }) => {
+const Subtitle = ({ text }) => <p className={styles.subtitle}>{text}</p>
+
+const Hero = () => {
+  const data = heroData[0]
+
   return (
     <div className={styles.hero}>
       <section className={styles.heroContent}>
-        <h2 className={styles.srOnly}>{title}</h2>
-        {subtitles.map((subtitle, index) => (
-          <p key={index} className={styles.subtitle}>
-            {subtitle}
-          </p>
-        ))}
+        <SRTitle text={data.title} />
+        <ListRenderer
+          data={data.subtitles}
+          Component={Subtitle}
+          propName="text"
+        />
         <br />
-        <p className={styles.text}>{text}</p>
+        <p className={styles.text}>{data.text}</p>
       </section>
     </div>
   )
-}
-
-Hero.propTypes = {
-  title: PropTypes.string.isRequired,
-  subtitles: PropTypes.arrayOf(PropTypes.string).isRequired,
-  text: PropTypes.string.isRequired,
 }
 
 export default Hero

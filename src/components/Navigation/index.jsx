@@ -1,10 +1,23 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import UserName from '../UserName'
 import { signOut } from '../../actions/userActions'
 import styles from './Navigation.module.css'
+import NavigationLink from './NavigationLink'
 
+const ICON_CLASSES = {
+  userCircle: 'fa fa-user-circle',
+  signOut: 'fa fa-sign-out',
+}
+
+/**
+ * Navigation component.
+ *
+ * @component
+ *
+ * @example
+ * return <Navigation />
+ */
 const Navigation = () => {
   const dispatch = useDispatch()
   const isLoggedIn = useSelector((state) => state.user.isLoggedIn)
@@ -17,23 +30,35 @@ const Navigation = () => {
   return (
     <div className={styles.mainNavItemContainer}>
       {!isLoggedIn && (
-        <Link className={styles.mainNavItem} to="/sign-in">
-          <i className="fa fa-user-circle"></i>
-          <span className={styles.mainNavItemText}>Sign In</span>
-        </Link>
+        <NavigationLink
+          to="/sign-in"
+          icon={ICON_CLASSES.userCircle}
+          text="Sign In"
+          iconClassName={styles.signInIcon}
+          textClassName={styles.signInText}
+        />
       )}
       {isLoggedIn && (
         <>
-          <span className={styles.mainNavItemIcon}>
-            <i className="fa fa-user-circle"></i>
-          </span>
-          <Link className={styles.mainNavItem} to="/user">
-            <UserName display="first" />
-          </Link>
-          <Link className={styles.mainNavItem} to="/" onClick={handleSignOut}>
-            <i className="fa fa-sign-out"></i>
-            <span className={styles.mainNavItemText}> Sign Out</span>
-          </Link>
+          <NavigationLink
+            to="/user"
+            iconElement={
+              <span className={styles.userIconContainer}>
+                <i
+                  className={ICON_CLASSES.userCircle + ` ${styles.userIcon}`}
+                ></i>
+              </span>
+            }
+            text={<UserName display="first" className={styles.userName} />}
+          />
+          <NavigationLink
+            to="/"
+            icon={ICON_CLASSES.signOut}
+            text="Sign Out"
+            iconClassName={styles.signOutIcon}
+            textClassName={styles.signOutText}
+            onClick={handleSignOut}
+          />
         </>
       )}
     </div>

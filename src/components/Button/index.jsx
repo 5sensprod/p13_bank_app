@@ -8,19 +8,19 @@ import styles from './Button.module.css'
  * This component provides a reusable button with custom styles and behavior.
  *
  * @component
- * @param {string} className - Additional CSS class for the button.
- * @param {function} onClick - Click handler for the button. Not required for submit/reset buttons.
+ * @param {string} [className=''] - Additional CSS class for the button.
+ * @param {function} [onClick] - Click handler for the button. Not required for submit/reset buttons.
  * @param {string} label - The text displayed on the button.
- * @param {("button"|"submit"|"reset")} type - The type of the button. Determines its behavior in a form context.
+ * @param {("button"|"submit"|"reset")} [type='button'] - The type of the button. Determines its behavior in a form context.
  * @returns {React.ReactNode}
  */
 
-const Button = ({ className, onClick, label, type }) => {
+const Button = ({ className, onClick, label, type = 'button' }) => {
   return (
     <button
       type={type}
       className={[styles.button, className].filter(Boolean).join(' ')}
-      onClick={onClick ? onClick : undefined}
+      onClick={onClick}
     >
       {label}
     </button>
@@ -36,7 +36,7 @@ Button.propTypes = {
 
 Button.defaultProps = {
   className: '',
-  onClick: undefined,
+  type: 'button',
 }
 
 export default Button

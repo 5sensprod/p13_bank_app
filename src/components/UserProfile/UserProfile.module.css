@@ -25,6 +25,8 @@
     margin-top: 25px;
 }
 
-.editButton:hover,.editSaveButton:hover,.editCancelButton:hover {
+.editButton:hover,
+.editSaveButton:hover,
+.editCancelButton:hover {
     cursor: pointer;
 }
