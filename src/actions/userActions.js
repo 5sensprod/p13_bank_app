@@ -8,7 +8,6 @@ import { authenticateUser } from '../api/authAPI'
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
 export const LOGOUT = 'LOGOUT'
 export const SET_USER_PROFILE = 'SET_USER_PROFILE'
-export const STORE_USER_CREDENTIALS = 'STORE_USER_CREDENTIALS'
 export const UPDATE_USER_PROFILE_REQUEST = 'UPDATE_USER_PROFILE_REQUEST'
 export const UPDATE_USER_PROFILE_SUCCESS = 'UPDATE_USER_PROFILE_SUCCESS'
 export const UPDATE_USER_PROFILE_FAILURE = 'UPDATE_USER_PROFILE_FAILURE'
@@ -50,11 +49,6 @@ export const setUserProfile = (user) => ({
  * @param {string} password - Mot de passe de l'utilisateur.
  * @returns {Object} - L'objet de l'action.
  */
-
-export const storeUserCredentials = (email, password) => ({
-  type: STORE_USER_CREDENTIALS,
-  payload: { email, password },
-})
 
 /**
  * Crée une action indiquant le début de la mise à jour du profil utilisateur.
@@ -105,7 +99,7 @@ export const authenticateAndFetchProfile =
   (username, password) => async (dispatch) => {
     try {
       const userData = await authenticateUser(username, password)
-      dispatch(storeUserCredentials(username, password))
+      // dispatch(storeUserCredentials(username, password))
       dispatch(loginSuccess(userData))
 
       const userProfile = await fetchUserProfileFromAPI()

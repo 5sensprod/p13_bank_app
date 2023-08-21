@@ -34,6 +34,7 @@ const Navigation = () => {
    */
   const handleSignOut = (event) => {
     event.preventDefault()
+    localStorage.removeItem('token')
     dispatch(signOut())
   }
 
