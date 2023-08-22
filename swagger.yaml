@@ -1,4 +1,4 @@
-swagger: '3.0'
+swagger: '2.0'
 info:
   title: Bank Argent API documentation
   description: Contains all available API endpoints in this codebase
